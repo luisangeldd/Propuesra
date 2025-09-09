@@ -1,0 +1,148 @@
+/* ===== BB Misión ===== */
+.bb-section { padding: clamp(48px, 6vw, 96px) 0; }
+.bb-container { width: min(1200px, 92%); margin: 0 auto; }
+.bb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 48px); align-items: center; }
+.bb-media { margin: 0; }
+.bb-media img { display: block; width: 100%; height: auto; border-radius: 10px; object-fit: cover; }
+.bb-content h2 { margin: 0 0 12px; font-size: clamp(28px, 3.2vw, 40px); line-height: 1.2; color: #fff; }
+.bb-content p { font-size: clamp(15px, 1.2vw, 18px); line-height: 1.7; margin: 12px 0; text-align: justify; }
+@media (max-width: 900px) { .bb-grid { grid-template-columns: 1fr; } .bb-media { order: 0; } .bb-content { order: 1; } }
+/* ===== Animación on-scroll ===== */
+.bb-reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; will-change: opacity, transform; }
+.bb-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+
+
+/* ===== Scroll reveal variants ===== */
+.bb-fade-up   { --bb-tx: 0;   --bb-ty: 24px; --bb-op: 0; }
+.bb-fade-left { --bb-tx: -24px; --bb-ty: 0;  --bb-op: 0; }
+.bb-fade-right{ --bb-tx: 24px;  --bb-ty: 0;  --bb-op: 0; }
+
+.bb-reveal { opacity: var(--bb-op, 0); transform: translate(var(--bb-tx,0), var(--bb-ty,0)); }
+.bb-reveal.is-visible { opacity: 1; transform: translate(0,0); }
+
+/* Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  .bb-reveal { transition: none !important; transform: none !important; opacity: 1 !important; }
+}
+
+
+
+/* ===== Sucursales Carousel ===== */
+.bb-header-row {
+  display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+  margin-bottom: 16px;
+}
+.bb-actions { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.bb-link { text-decoration:none; font-weight:600; }
+
+.bb-carousel-viewport {
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 0 16px;
+}
+.bb-carousel-track {
+  display:flex; gap:16px; min-width:100%;
+}
+.bb-branch-card {
+  position:relative; flex: 0 0 32%;
+  height: clamp(220px, 36vw, 420px);
+  border-radius: 16px; overflow:hidden;
+  scroll-snap-align:center;
+}
+.bb-branch-card img { width:100%; height:100%; object-fit:cover; display:block; }
+.bb-overlay {
+  position:absolute; inset:0;
+  background: linear-gradient(0deg, rgba(0,0,0,.25), rgba(0,0,0,.25));
+  transition: transform .4s ease, background .3s ease, opacity .3s ease;
+  pointer-events:none;
+}
+.bb-branch-card:hover .bb-overlay,
+.bb-branch-card:focus-within .bb-overlay {
+  background: linear-gradient(0deg, rgba(7,94,0,.55), rgba(7,94,0,.55));
+}
+
+.bb-details {
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  justify-content:flex-end; padding:20px; color:#fff;
+  opacity:0; transform: translateY(10px); transition: opacity .35s ease, transform .35s ease;
+}
+.bb-branch-card:hover .bb-details,
+.bb-branch-card:focus-within .bb-details {
+  opacity:1; transform: translateY(0);
+}
+.bb-details h3 { margin:0; letter-spacing:.5px; }
+.bb-icon { font-size:24px; margin-bottom:6px; }
+
+.bb-arrows { display:flex; gap:8px; }
+.bb-arrow { border:none; background:#fff; border-radius:50%; width:36px; height:36px; font-size:20px; line-height:36px; cursor:pointer; }
+.bb-arrow:active { transform: scale(.96); }
+
+@media (max-width: 1000px) {
+  .bb-branch-card { flex-basis: 70%; }
+}
+@media (max-width: 640px) {
+  .bb-branch-card { flex-basis: 88%; }
+  .bb-header-row { align-items: center; }
+}
+
+
+
+/* ===== Sucursales: alignment & click ===== */
+.bb-branch-card { aspect-ratio: 16 / 9; height: auto; cursor: pointer; }
+.bb-branch-card img.bb-img { object-position: center; }
+.bb-details {
+  opacity: 1; transform: none;
+  background: linear-gradient(0deg, rgba(0,0,0,.65), rgba(0,0,0,0) 60%);
+}
+.bb-details p { opacity: 0; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease; }
+.bb-branch-card:hover .bb-details p,
+.bb-branch-card:focus-within .bb-details p { opacity: 1; transform: translateY(0); }
+
+/* Tighter spacing for title so quede con la imagen */
+.bb-details h3 { margin: 4px 0 2px; }
+
+
+/* === BB Drawer + Footer patches (08/24/2025) === */
+.drawer-backdrop{position:fixed; inset:0; background:#000; opacity:0; visibility:hidden; transition:opacity .25s ease, visibility .25s ease;}
+.drawer-backdrop.open, body.nav-open .drawer-backdrop{opacity:.5; visibility:visible;}
+.mobile-drawer{position:fixed; inset:0 0 0 auto; width:min(86vw, 360px); background:#0b0b0b; color:#fff; transform: translateX(100%); transition: transform .3s ease; box-shadow: -10px 0 30px rgba(0,0,0,.35); display:flex; flex-direction:column;}
+.mobile-drawer .drawer-header{display:flex; align-items:center; justify-content:space-between; padding:16px; border-bottom:1px solid #fff2}
+.mobile-drawer .drawer-inner{padding:10px 16px; display:flex; flex-direction:column;}
+.mobile-drawer .drawer-inner a{color:#fff; text-decoration:none; padding:12px 0; border-bottom:1px dashed #fff3}
+.mobile-drawer.open, body.nav-open .mobile-drawer{transform: translateX(0);}
+.drawer-close{background:none; border:0; color:#fff; font-size:20px; cursor:pointer}
+
+@media (max-width: 900px){
+  .main-nav{display:none;}
+  .menu-toggle{display:inline-flex;}
+}
+
+.site-ftr{background:#0b0b0b; color:#d7d7d7; margin-top:40px}
+.ftr-grid{display:grid; gap:16px; grid-template-columns: 2fr 1fr 1fr; padding:20px 0}
+@media(max-width:900px){ .ftr-grid{ grid-template-columns: 1fr 1fr } }
+.ftr-links a{display:block; margin:6px 0; color:#9ad1ff; text-decoration:none}
+.site-ftr small{display:block; margin-top:8px; color:#aab3c0}
+/* === end patches === */
+
+
+/* === Featured Products Hover Button === */
+.card.product .hover-reveal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0.8);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+.card.product:hover .hover-reveal {
+  opacity: 1;
+  transform: translate(-50%,-50%) scale(1);
+  pointer-events: auto;
+}
+.card.product .thumb {
+  position: relative;
+  overflow: hidden;
+}

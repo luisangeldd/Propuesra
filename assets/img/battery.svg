@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+  <rect width="640" height="360" fill="#222425"/>
+  <rect x="80" y="110" rx="14" ry="14" width="440" height="140" fill="#2b2d2e" stroke="#3a3d3f" stroke-width="4"/>
+  <rect x="520" y="150" width="30" height="60" rx="6" ry="6" fill="#2b2d2e" stroke="#3a3d3f" stroke-width="4"/>
+  <rect x="120" y="135" width="40" height="40" fill="#39FF14"/>
+  <rect x="170" y="135" width="40" height="40" fill="#FF0D0D"/>
+  <text x="120" y="210" fill="#fff" font-family="Montserrat,Arial" font-size="28" font-weight="700">Battery Boss</text>
+  <text x="120" y="240" fill="#bbb" font-family="Inter,Arial" font-size="18">Batería 12V • Línea LTH</text>
+</svg>

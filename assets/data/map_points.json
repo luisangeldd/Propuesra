@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Centro (Puebla)",
+    "lat": 19.0415805,
+    "lng": -98.1415156,
+    "gmaps": "https://www.google.com/maps/place//@19.0415805,-98.1415156,15z?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "name": "BBR Suc. AMOZOC",
+    "lat": 19.0436114,
+    "lng": -98.0816336,
+    "gmaps": "https://www.google.com/maps/place/Battery+Boss+Recycling+Suc.+AMOZOC/@19.0436114,-98.0816336,15z/data=!4m6!3m5!1s0x85cfeb2a4f9411ed:0x4e35421b0234fd4c!8m2!3d19.0436114!4d-98.0816336!16s%2Fg%2F11p5ngrz7k?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "name": "BBR Suc. 25 PTE",
+    "lat": 19.0453976,
+    "lng": -98.2245009,
+    "gmaps": "https://www.google.com/maps/place/Battery+Boss+Recycling+Suc.+25+PTE/@19.0453976,-98.2245009,15z/data=!4m6!3m5!1s0x85cfc72c64e43e15:0xa40278d22341c9ed!8m2!3d19.0453976!4d-98.2245009!16s%2Fg%2F1tdq1gmw?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "name": "BBR Suc. 19 PTE",
+    "lat": 19.0453548,
+    "lng": -98.2245562,
+    "gmaps": "https://www.google.com/maps/place/Battery+Boss+Recycling+Suc.+19+PTE/@19.0453548,-98.2245562,15z/data=!4m6!3m5!1s0x85cfc7ee79990079:0x842e0de6155d5fd!8m2!3d19.0453548!4d-98.2245562!16s%2Fg%2F11j6_4mky9?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "name": "BBR Suc. VALSEQUILLO",
+    "lat": 19.0187123,
+    "lng": -98.2108962,
+    "gmaps": "https://www.google.com/maps/place/Battery+Boss+Recycling+suc.+VALSEQUILLO/@19.0187123,-98.2108962,15z/data=!4m6!3m5!1s0x85cfc1113fce7e0f:0x7d2c6345a9dfba6a!8m2!3d19.0187123!4d-98.2108962!16s%2Fg%2F11sfgzrbz3?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "name": "BBR Suc. 11 SUR",
+    "lat": 19.0017892,
+    "lng": -98.2397397,
+    "gmaps": "https://www.google.com/maps/place/Battery+Boss+Recycling+Suc.+11+SUR/@19.0017892,-98.2397397,15z/data=!4m6!3m5!1s0x85cfb9b80b2924ef:0x20f0d64f8dd2677e!8m2!3d19.0017892!4d-98.2397397!16s%2Fg%2F11kj_0x5jq?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "name": "Zona Norte Puebla",
+    "lat": 19.0854521,
+    "lng": -98.1585868,
+    "gmaps": "https://www.google.com/maps/place//@19.0854521,-98.1585868,15z?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "name": "BBR Suc. XALAPA",
+    "lat": 19.5633289,
+    "lng": -96.9273103,
+    "gmaps": "https://www.google.com/maps/place/Battery+Boss+Recycling+Suc.+XALAPA/@19.5633289,-96.9273103,15z/data=!4m6!3m5!1s0x85db2f4b37c07fe3:0xad49918021409f29!8m2!3d19.5633289!4d-96.9273103!16s%2Fg%2F11rcsg81sq?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+  }
+]

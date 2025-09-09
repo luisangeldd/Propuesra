@@ -1,0 +1,52 @@
+[
+  {
+    "id": "pue_sta_cruz_los_angeles",
+    "nombre": "Battery Boss Recycling Suc. 19 PTE",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Diagonal de la 19 Pte. 2509, Sta Cruz los Ángeles, 72400 Heroica Puebla de Zaragoza, Pue.",
+    "tel": "(222) 240 81 00",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_blvd_capitan_carlos_camacho",
+    "nombre": "Battery Boss Recycling suc. VALSEQUILLO",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Blvd. Capitán Carlos Camacho Espíritu 214 Local:3, San Baltazar Campeche, 72550 Heroica Puebla de Zaragoza, Pue.",
+    "tel": "(222) 970 49 54",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_sta_cruz_los_angeles",
+    "nombre": "Battery Boss Recycling Suc. 11 SUR",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Onceava Sur LOCAL 5, Reserva Territorial Atlixcáyotl, EX HACIENDA MAYORAZGO, 72480 Heroica Puebla de Zaragoza, Pue.",
+    "tel": "(222) 948 54 84",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_sta_cruz_los_angeles",
+    "nombre": "Battery Boss Recycling Suc. AMOZOC",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Carr. Federal Puebla-Tehuacán 638, San Salvador, Chachapa Centro, 72990 Puebla, Pue.",
+    "tel": "(222) 570 21 29",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_sta_cruz_los_angeles",
+    "nombre": "Battery Boss Recycling Suc. XALAPA",
+    "estado": "Veracruz",
+    "ciudad": "Xalapa",
+    "direccion": "Av Fray Andrés de Olmos 106, Rafael Lucio, 91110 Xalapa-Enríquez, Ver.",
+    "tel": "(228) 890 04 39",
+    "whatsapp": "",
+    "horario": ""
+  }
+]

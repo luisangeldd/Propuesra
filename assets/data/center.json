@@ -1,0 +1,812 @@
+[
+  {
+    "id": "pue_angelopolis",
+    "nombre": "Centro de Servicio LTH - Angelópolis",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Boulevard de los Reyes 6591 Loc 1, Loma de Angelópolis, Puebla, Puebla 72830",
+    "tel": "(222) 928 16 45",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_teziutlan_v_lombardo",
+    "nombre": "Centro de Servicio LTH - V Lombardo",
+    "estado": "Puebla",
+    "ciudad": "Teziutlán",
+    "direccion": "Av. Vicente Lombardo Toledano 304, Centro, Teziutlán, Puebla 73800",
+    "tel": "(231) 313 15 72",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_11_sur_mayorazgo",
+    "nombre": "Centro de Servicio LTH - 11 Sur",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Prolongación 11 Sur 9529 Local 5, Col. Ex Hacienda Mayorazgo, Puebla, Puebla 72480",
+    "tel": "(222) 948 54 83 / (222) 948 54 84",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_16_septiembre_bugambilias",
+    "nombre": "Centro de Servicio LTH - 16 de Septiembre",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "C. 16 de Septiembre 6328 Local 1, Bugambilias, Puebla, Puebla 72470",
+    "tel": "(222) 984 88 88 / (222) 984 88 89",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_plazas_amalucan",
+    "nombre": "Centro de Servicio LTH - Plazas de Amalucán",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Plazuela de Analco 1402, Plazas de Amalucán, Puebla, Puebla 72310",
+    "tel": "(222) 367 00 90",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_hermanos_serdan",
+    "nombre": "Centro de Servicio LTH - Hermanos Serdán",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Blvd. Hermanos Serdán 687, San Rafael Poniente, Puebla, Puebla 72029",
+    "tel": "(222) 998 9572",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_cuautlancingo",
+    "nombre": "Centro de Servicio LTH - Cuautlancingo",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Av México - Puebla, Villas Cuautlancingo 173 Local 6, Barrio del Calvario, Puebla, Puebla 72700",
+    "tel": "(222) 762 72 28",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_25_poniente",
+    "nombre": "Centro de Servicio LTH - 25 Poniente",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Av. 25 Poniente 2715, Santa Cruz De Los Ángeles, Puebla, Puebla 72400",
+    "tel": "(222) 243 27 78",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_xochimehuacan",
+    "nombre": "Centro de Servicio LTH - Xochimehuacán",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Calle De Las Huertas 54, San Pablo Xochimehuacán, Puebla, Puebla 72014",
+    "tel": "(222) 153 61 44",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_forjadores_viveros",
+    "nombre": "Centro de Servicio LTH - Forjadores",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Blvd. Forjadores 987 Local 2 Y 3, Col. Viveros Residenciales, Puebla, Puebla 72150",
+    "tel": "(222) 285 82 39",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_san_lorenzo_almecatla",
+    "nombre": "Centro de Servicio LTH - San Lorenzo Almecatla",
+    "estado": "Puebla",
+    "ciudad": "Cuautlancingo",
+    "direccion": "Diaz Ordaz 12, San Lorenzo Almecatla, Cuautlancingo, Puebla 72710",
+    "tel": "",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_defensores",
+    "nombre": "Centro de Servicio LTH - Defensores",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Diagonal Defensores De La República 115-A, San Alejandro, Puebla, Puebla 72090",
+    "tel": "(222) 232 40 53",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_xonacatepec",
+    "nombre": "Centro de Servicio LTH - Xonacatepec",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Boulevard Xonacatepec 10417, Villa De Guadalupe, Puebla, Puebla 72229",
+    "tel": "(222) 218 83 95",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_abastos",
+    "nombre": "Centro de Servicio LTH - Abastos Puebla",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Carr. Vía Corta a Sta. Ana 10802, Prof Jorge Murad M, Puebla, Puebla 72016",
+    "tel": "(222) 456 04 70",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_blvd_atlixco",
+    "nombre": "Centro de Servicio LTH - Blvd Atlixco",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "KM 3.5, carretera Federal a Atlixco, Concepcion la Cruz, Puebla, Puebla 721097",
+    "tel": "(222) 688 74 29",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_amozoc",
+    "nombre": "Centro de Servicio LTH - Amozoc",
+    "estado": "Puebla",
+    "ciudad": "Amozoc De Mota",
+    "direccion": "Blvd. Puebla-Amozoc 638, San Salvador Chachapa, Amozoc De Mota, Puebla 72990",
+    "tel": "(222) 122 73 05",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_san_martin_texmelucan",
+    "nombre": "Centro de Servicio LTH - San Martín Texmelucan",
+    "estado": "Puebla",
+    "ciudad": "San Martín Texmelucan de Labastida",
+    "direccion": "Blvd. Xicotencatl 614, Col San Martín de Labastida, San Martín Texmelucan de Labastida, Puebla 74059",
+    "tel": "(248) 688 17 57",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_tehuacan",
+    "nombre": "Centro de Servicio LTH - Tehuacan",
+    "estado": "Puebla",
+    "ciudad": "Tehuacan",
+    "direccion": "Carretera Federal Puebla Tehuacan Km 112, San Lorenzo Teotipilco, Tehuacan, Puebla 75855",
+    "tel": "(238) 690 97 07 / (238) 208 67 07",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_izucar",
+    "nombre": "Centro de Servicio LTH - Izucar de Matamoros",
+    "estado": "Puebla",
+    "ciudad": "Izucar de Matamoros",
+    "direccion": "Carretera Internacional A Oaxaca S/N, Col. Barrio La Asuncion, Izucar de Matamoros, Puebla 74470",
+    "tel": "(243) 113 43 12",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pue_cholula",
+    "nombre": "Centro de Servicio LTH - Cholula",
+    "estado": "Puebla",
+    "ciudad": "Puebla",
+    "direccion": "Bv.Forjadores 3414 L2, Barrio De Jesus Tlatelpa, Puebla, Puebla 72750",
+    "tel": "(222) 945 57 32",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_san_sebastian_1",
+    "nombre": "Centro de Servicio LTH - San Sebastian",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Isidro Fabela 510, San Sebastian, Toluca, Edo. De México 50090",
+    "tel": "(722) 213 17 20",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_las_am_ricas_2",
+    "nombre": "Centro de Servicio LTH - Las Américas",
+    "estado": "Estado de México",
+    "ciudad": "Ecatepec de Morelos",
+    "direccion": "Av. Central Esquina 1Ro De Mayo, Lote 1 Y 2, Las Américas, Ecatepec, Edo. De México 55070",
+    "tel": "(552) 486 47 53",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_tlatlaya_3",
+    "nombre": "Centro de Servicio LTH - Tlatlaya",
+    "estado": "Estado de México",
+    "ciudad": "Cuautitlán Izcalli",
+    "direccion": "Tlatlaya 5, Centro Urbano, Zona Comercial, Cuautitlan Izcalli, Edo. De México 54750",
+    "tel": "(555) 871 11 86",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_carranza_4",
+    "nombre": "Centro de Servicio LTH - Carranza",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Venustiano Carranza 2617, Seminario, Toluca, Edo. De México 50170",
+    "tel": "(722) 318 98 00",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_l_pez_portillo_5",
+    "nombre": "Centro de Servicio LTH - López Portillo",
+    "estado": "Estado de México",
+    "ciudad": "Tultitlán",
+    "direccion": "Av. José López Portillo 328, San Mateo Cuautepec, Fuentes Del Valle, Edo. De México 54910",
+    "tel": "(558) 868 10 08",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_cuauhtemoc_6",
+    "nombre": "Centro de Servicio LTH - Cuauhtemoc",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Rafael M. Hidalgo 804, Cuauhtemoc, Toluca, Edo. De México 50130",
+    "tel": "(722) 219 47 28",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_colinas_7",
+    "nombre": "Centro de Servicio LTH - Colinas",
+    "estado": "Estado de México",
+    "ciudad": "Cuautitlán Izcalli",
+    "direccion": "Río Lerma 2 L-4, Colinas Del Lago, Cuautitlan Izcalli, Edo. De México 54744",
+    "tel": "(555) 868 68 31",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_carr_qro_8",
+    "nombre": "Centro de Servicio LTH - Carr. Qro.",
+    "estado": "Estado de México",
+    "ciudad": "Cuautitlán Izcalli",
+    "direccion": "Carr. México - Querétaro Km. 32.1, San Martin Tepetlixpan, Cuautitlan Izcalli, Edo. De México 54870",
+    "tel": "(552) 075 21 18",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_alfredo_del_mazo_9",
+    "nombre": "Centro de Servicio LTH - Alfredo Del Mazo",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Isaac Newton 311, Científicos, Toluca, Edo. De México 50075",
+    "tel": "(722) 219 47 28",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_metepec_10",
+    "nombre": "Centro de Servicio LTH - Metepec",
+    "estado": "Estado de México",
+    "ciudad": "Metepec",
+    "direccion": "Ave. Leona Vicario 331 Int-D, Campestre Del Valle, Metepec, Edo. De México 52177",
+    "tel": "(722) 232 10 42",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_neza_oriente_11",
+    "nombre": "Centro de Servicio LTH - Neza-Oriente",
+    "estado": "Estado de México",
+    "ciudad": "Nezahualcóyotl",
+    "direccion": "Narvarte 292, Jose Vicente Villada, Nezahualcóyotl, Edo. De México 57760",
+    "tel": "(552) 619 45 39 / (557) 790 84 64",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_ixtlahuaca_12",
+    "nombre": "Centro de Servicio LTH - Ixtlahuaca",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Av. Jose Maria Morelos 208, Col. Centro, Toluca, Edo. De México 50740",
+    "tel": "(712) 283 71 00",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_santa_elena_13",
+    "nombre": "Centro de Servicio LTH - Santa Elena",
+    "estado": "Estado de México",
+    "ciudad": "Cuautitlán Izcalli",
+    "direccion": "Juan Diego, Méx. Carretera Cuautitlán Melchor Ocampo Km.2.5 654, Col. Lázaro Cárdenas, Cuautitlan Izcalli, Edo. De México 54810",
+    "tel": "(556) 236 83 60",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_san_cristobal_14",
+    "nombre": "Centro de Servicio LTH - San Cristobal",
+    "estado": "Estado de México",
+    "ciudad": "Ecatepec de Morelos",
+    "direccion": "Calle Benito Juárez Sur 25, La Mora, Ecatepec, Edo. De México 55030",
+    "tel": "(555) 790 33 25",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_via_lopez_portillo_15",
+    "nombre": "Centro de Servicio LTH - Via Lopez Portillo",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Via Lopez Portillo 1004, Col San Mateo Otzacatipan, Toluca, Edo. De México 50220",
+    "tel": "(722) 936 47 19",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_tecnol_gico_16",
+    "nombre": "Centro de Servicio LTH - Tecnológico",
+    "estado": "Estado de México",
+    "ciudad": "Metepec",
+    "direccion": "Av. Tecnológico 466, Fraccionamiento Rancho la asunción Metepec, Metepec, Edo. De México 52172",
+    "tel": "(722) 271 40 24",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_vallejo_17",
+    "nombre": "Centro de Servicio LTH - Vallejo",
+    "estado": "Estado de México",
+    "ciudad": "Tlalnepantla",
+    "direccion": "Calzada Vallejo 1116, Col. Hab Prado Vallejo, Tlalnepantla, Edo. De México 54170",
+    "tel": "(552) 231 50 50",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_comonfort_18",
+    "nombre": "Centro de Servicio LTH - Comonfort",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Av. Ignacio Comonfort 105, Santa María Zozoquipan, Toluca, Edo. De México 50160",
+    "tel": "(722) 914 56 83",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_doctores_19",
+    "nombre": "Centro de Servicio LTH - Doctores",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Isidro Fabela Norte 835, Doctores, Toluca, Edo. De México 50060",
+    "tel": "(722) 237 75 64",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_mundo_e_20",
+    "nombre": "Centro de Servicio LTH - Mundo E",
+    "estado": "Estado de México",
+    "ciudad": "Tlalnepantla",
+    "direccion": "Av. Adolfo López Mateos 70, Magisterial Vista Bella, Tlalnepantla, Edo. De México 54050",
+    "tel": "(555) 161 53 82",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_tejupilco_21",
+    "nombre": "Centro de Servicio LTH - Tejupilco",
+    "estado": "Estado de México",
+    "ciudad": "Tejupilco de Hidalgo",
+    "direccion": "Prol. Avenida 27 De Septiembre 63, Juárez, Tejupilco De Hidalgo, Edo. De México 51400",
+    "tel": "(724) 267 15 76",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_la_romana_22",
+    "nombre": "Centro de Servicio LTH - La Romana",
+    "estado": "Estado de México",
+    "ciudad": "Tlalnepantla",
+    "direccion": "Hidalgo 128, La Romana, Tlalnepantla, Edo. De México 54020",
+    "tel": "(559) 372 60 10",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_palo_solo_23",
+    "nombre": "Centro de Servicio LTH - Palo Solo",
+    "estado": "Estado de México",
+    "ciudad": "Naucalpan de Juárez",
+    "direccion": "Av. Palo Solo 162 Local 25A, Palo Solo, Naucalpan De Juárez, Edo. De México 52778",
+    "tel": "(555) 290 89 35 / (553) 813 15 67",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_pino_suarez_24",
+    "nombre": "Centro de Servicio LTH - Pino Suarez",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Blvr. José María Pino Suárez 709, Américas Cárdenas, Toluca, Edo. De México 50130",
+    "tel": "(722) 297 05 80",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_san_lorenzo_tlalnepantla_25",
+    "nombre": "Centro de Servicio LTH - San Lorenzo Tlalnepantla",
+    "estado": "Estado de México",
+    "ciudad": "Tlalnepantla",
+    "direccion": "Gustavo Baz 3315, San Lorenzo, Tlalnepantla, Edo. De México 54030",
+    "tel": "(555) 390 22 75",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_san_geronimo_26",
+    "nombre": "Centro de Servicio LTH - San Geronimo",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Calle Manuel J. Clouthier 705, San Jeronimo Chicahualco, Toluca, Edo. De México 52170",
+    "tel": "",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_leon_guzman_27",
+    "nombre": "Centro de Servicio LTH - Leon Guzman",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "C. Jesús Carranza 1308, 8 Cedros, Toluca, Edo. De México 50170",
+    "tel": "(722) 942 66 99",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_faja_de_oro_28",
+    "nombre": "Centro de Servicio LTH - Faja De Oro",
+    "estado": "Estado de México",
+    "ciudad": "Ecatepec de Morelos",
+    "direccion": "Av. Adolfo López Mateos R1, Faja De Oro, Ecatepec, Edo. De México 55490",
+    "tel": "(555) 790 33 25",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_atizap_n_29",
+    "nombre": "Centro de Servicio LTH - Atizapán",
+    "estado": "Estado de México",
+    "ciudad": "Atizapán de Zaragoza",
+    "direccion": "Blvd. Adolfo López Mateos 202, Las Alamedas, Atizapan de Zaragoza, Edo. De México 52970",
+    "tel": "(555) 871 11 86",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_san_miguel_30",
+    "nombre": "Centro de Servicio LTH - San Miguel",
+    "estado": "Estado de México",
+    "ciudad": "Cuautitlán Izcalli",
+    "direccion": "Av. Huehuetoca 1, Col. Ex Hacienda de San Miguel, Cuautitlan Izcalli, Edo. De México 54715",
+    "tel": "(555) 831 91 00",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_jes_s_carranza_31",
+    "nombre": "Centro de Servicio LTH - Jesús Carranza",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "C. Jesús Carranza 1308, 8 Cedros, Toluca, Edo. De México 50170",
+    "tel": "(722) 942 66 99",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_san_bartolo_32",
+    "nombre": "Centro de Servicio LTH - San Bartolo",
+    "estado": "Estado de México",
+    "ciudad": "San Bartolo (Zumpango)",
+    "direccion": "Centauro del Norte S/N, San Bartolo Cuautlalpan, San Bartolo, Edo. De México 55630",
+    "tel": "(559) 702 10 28",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_santiago_texcoco_33",
+    "nombre": "Centro de Servicio LTH - Santiago Texcoco",
+    "estado": "Estado de México",
+    "ciudad": "Ecatepec de Morelos",
+    "direccion": "Lechería Texcoco, KM 440, Col. Ampliación del Carmen, Ecatepec, Edo. De México 55025",
+    "tel": "(552) 162 95 05",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_santa_monica_34",
+    "nombre": "Centro de Servicio LTH - Santa Monica",
+    "estado": "Estado de México",
+    "ciudad": "Tlalnepantla",
+    "direccion": "AV. Convento de Santa Monica 101, Jardines de Santa Monica, Tlalnepantla, Edo. De México 54050",
+    "tel": "(559) 502 25 48",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_torres_35",
+    "nombre": "Centro de Servicio LTH - Torres",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Blvd. Solidaridad Las Torres 412, Sta María De Las Rosas, Toluca, Edo. De México 50090",
+    "tel": "(771) 170 25 94",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_zinacantepec_36",
+    "nombre": "Centro de Servicio LTH - Zinacantepec",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Adolfo Lopez Mateos 200, Las Culturas, Toluca, Edo. De México 31355",
+    "tel": "722 944 7230",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_atizapan_km10_37",
+    "nombre": "Centro de Servicio LTH - Atizapan (Km10)",
+    "estado": "Estado de México",
+    "ciudad": "Atizapán de Zaragoza",
+    "direccion": "Carretera atizapan, Villa Nicolas Romero Km10, El Pedregal de Atizapan, Atizapan de Zaragoza, Edo. De México 52948",
+    "tel": "(553) 011 1683",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_coacalco_38",
+    "nombre": "Centro de Servicio LTH - Coacalco",
+    "estado": "Estado de México",
+    "ciudad": "Tultitlán",
+    "direccion": "Av. José López Portillo 172-Local-L, Mayorazgo de Tultitlan, Tultitlan, Edo. De México 54949",
+    "tel": "(558) 535 40 88",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_lomas_verdes_39",
+    "nombre": "Centro de Servicio LTH - Lomas Verdes",
+    "estado": "Estado de México",
+    "ciudad": "Naucalpan de Juárez",
+    "direccion": "Colina De Las Nieves 93 Interior B, Bulevares, Naucalpan, Edo. De México 53140",
+    "tel": "(555) 941 62 59 / (553) 366 59 91",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_hipico_40",
+    "nombre": "Centro de Servicio LTH - Hipico",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Blvr. José María Pino Suárez 2103, El Hipico, Toluca, Edo. De México 50190",
+    "tel": "",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_la_fuente_41",
+    "nombre": "Centro de Servicio LTH - La Fuente",
+    "estado": "Estado de México",
+    "ciudad": "Ecatepec de Morelos",
+    "direccion": "Av. Vía Morelos Esquina Durango 511, Santa María Tulpetlac, Ecatepec, Edo. De México 55400",
+    "tel": "(556) 234 72 08",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_azteca_42",
+    "nombre": "Centro de Servicio LTH - Azteca",
+    "estado": "Estado de México",
+    "ciudad": "Ecatepec de Morelos",
+    "direccion": "Boulevard De Los Aztecas Esquina Con Tlaxcaltecas Mz 423 Lt 3, Ciudad Azteca 1Ra Sección, Ecatepec De Morelos, Edo. De México 55120",
+    "tel": "(551) 548 27 54",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_san_mateo_atenco_43",
+    "nombre": "Centro de Servicio LTH - San Mateo Atenco",
+    "estado": "Estado de México",
+    "ciudad": "San Mateo Atenco",
+    "direccion": "Av. Lerma 120, Barrio de San Pedro, Toluca, Edo. De México 52105",
+    "tel": "(728) 285 04 99",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_las_arboledas_44",
+    "nombre": "Centro de Servicio LTH - Las Arboledas",
+    "estado": "Estado de México",
+    "ciudad": "Atizapán de Zaragoza",
+    "direccion": "Calzada S. Mateo 26, San Juan Bosco 1, Atizapan De Zaragoza, Edo. De México 52946",
+    "tel": "(555) 816 43 76",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_v_a_morelos_45",
+    "nombre": "Centro de Servicio LTH - Vía Morelos",
+    "estado": "Estado de México",
+    "ciudad": "Ecatepec de Morelos",
+    "direccion": "Vía Morelos 208 Lt. 11, Nuevo Laredo, Ecatepec, Edo. De México 55080",
+    "tel": "(555) 116 63 50",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_el_arbol_alfredo_del_mazo_46",
+    "nombre": "Centro de Servicio LTH - El Arbol Alfredo del Mazo",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Alfredo del Mazo 374 local 1-2 y 4, Zona Industrial, Toluca, Edo. De México 50070",
+    "tel": "",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_crespa_47",
+    "nombre": "Centro de Servicio LTH - Crespa",
+    "estado": "Estado de México",
+    "ciudad": "Toluca",
+    "direccion": "Av. Vicente lombardo toledano 196, Col. Crespa, Toluca, Edo. De México 50200",
+    "tel": "(722) 297 70 62",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_zumpango_48",
+    "nombre": "Centro de Servicio LTH - Zumpango",
+    "estado": "Estado de México",
+    "ciudad": "Zumpango de Ocampo",
+    "direccion": "Carretera Zumpago Los Reyes 1801, Local 1- E, Col. San Sebastian, Zumpango de Ocampo, Edo. De México 55600",
+    "tel": "(554) 987 42 89",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_lago_de_guadalupe_atizapan_49",
+    "nombre": "Centro de Servicio LTH - Lago de Guadalupe Atizapan",
+    "estado": "Estado de México",
+    "ciudad": "Atizapán de Zaragoza",
+    "direccion": "Av. Lago de Guadalupe 305, Ciudad Lopez Mateos, Atizapan de Zaragoza, Edo. De México 52929",
+    "tel": "(555) 939 20 92",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mex_ojo_de_agua_50",
+    "nombre": "Centro de Servicio LTH - Ojo De Agua",
+    "estado": "Estado de México",
+    "ciudad": "Tecámac",
+    "direccion": "Blvd. Ojo De Agua Mz 65 Lt, Fraccionamiento Ojo De Agua, Tecamac, Edo. De México 55770",
+    "tel": "(555) 932 00 86",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "ver_nuevo_veracruz",
+    "nombre": "Centro de Servicio LTH - Nuevo Veracruz",
+    "estado": "Veracruz",
+    "ciudad": "Veracruz",
+    "direccion": "ESQ Av. Central, Veracruz, Veracruz",
+    "tel": "229 920 8288",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "bdr_urano",
+    "nombre": "Centro de Servicio LTH - Urano",
+    "estado": "Veracruz",
+    "ciudad": "Boca del Río",
+    "direccion": "Av. Urano #702 Local 1, Col. Jardines de Virginia, Boca del Río, Veracruz",
+    "tel": "(229) 922 86 07",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "bdr_centro",
+    "nombre": "Centro de Servicio LTH - Boca del Río",
+    "estado": "Veracruz",
+    "ciudad": "Boca del Río",
+    "direccion": "Boca del Río, Veracruz (ver localización en mapa)",
+    "tel": "229 927 5762",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "xal_rafael_lucio",
+    "nombre": "Centro de Servicio LTH - Rafael Lucio",
+    "estado": "Veracruz",
+    "ciudad": "Xalapa",
+    "direccion": "Av. Lázaro Cárdenas #781-A, Col. Rafael Lucio, Xalapa, Veracruz",
+    "tel": "(228) 814 52 90",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "xal_20_nov",
+    "nombre": "Centro de Servicio LTH - 20 de Noviembre",
+    "estado": "Veracruz",
+    "ciudad": "Xalapa",
+    "direccion": "Av. 20 de Noviembre Norte #16, Col. Centro, Xalapa, Veracruz",
+    "tel": "(228) 815 31 52",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "xal_emiliano_zapata",
+    "nombre": "Centro de Servicio LTH - Carretera Xalapa-Veracruz",
+    "estado": "Veracruz",
+    "ciudad": "Xalapa",
+    "direccion": "Carretera Federal Xalapa-Veracruz Km. 7.1, El Chico, Emiliano Zapata, Veracruz",
+    "tel": "(228) 141 50 53",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "pozarica_la_rueda",
+    "nombre": "Centro de Servicio LTH - La Rueda",
+    "estado": "Veracruz",
+    "ciudad": "Poza Rica",
+    "direccion": "Blvd. Adolfo Ruíz Cortínez 5005, La Rueda, Poza Rica, Veracruz 93306",
+    "tel": "(782) 826 77 24",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "sat_5_febrero",
+    "nombre": "Centro de Servicio LTH - 5 de Febrero",
+    "estado": "Veracruz",
+    "ciudad": "San Andrés Tuxtla",
+    "direccion": "Blvd. 5 de Febrero #15, Col. Emiliano Zapata, San Andrés Tuxtla, Veracruz",
+    "tel": "(294) 942 45 34",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "ver_jb_lobos",
+    "nombre": "Centro de Servicio LTH - J.B. Lobos",
+    "estado": "Veracruz",
+    "ciudad": "Veracruz",
+    "direccion": "Calle J.B. Lobos #1033, Col. 21 de Abril, Veracruz, Veracruz",
+    "tel": "(229) 155 36 32",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "xal_quirasco",
+    "nombre": "Centro de Servicio LTH - Antonio M. Quirasco",
+    "estado": "Veracruz",
+    "ciudad": "Xalapa",
+    "direccion": "Antonio M. Quirasco #221, Xalapa-Enríquez, Veracruz",
+    "tel": "228 842 4120",
+    "whatsapp": "",
+    "horario": ""
+  },
+  {
+    "id": "mdlt_libramiento",
+    "nombre": "Centro de Servicio LTH - Libramiento",
+    "estado": "Veracruz",
+    "ciudad": "Martínez de la Torre",
+    "direccion": "Libramiento San José de la Unión esq. Río Coatzacoalcos #103-A, Martínez de la Torre, Veracruz",
+    "tel": "",
+    "whatsapp": "",
+    "horario": ""
+  }
+]

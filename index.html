@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Battery Boss</title>
+<link href="assets/css/enhancements.css?v=99" rel="stylesheet"/>
+<style>
+    h2 {
+      color: #fff;
+    }
+    p {
+      color: #fff
+    }
+    /* Header transparent -> white */
+    .site-hdr{position:fixed; top:0; left:0; right:0; z-index:1000; transition:background-color .25s, box-shadow .25s, border-color .25s; border-bottom:1px solid transparent}
+    .site-hdr.over-hero{background:#0f2d63; border-bottom-color:#153672; box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .site-hdr.is-solid{background:#0f2d63; border-bottom-color:#153672; box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .hdr-row{display:flex; align-items:center; justify-content:space-between; gap:18px; min-height:72px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+    .brand .brand-text{font-weight:800; letter-spacing:.2px}
+    .site-hdr.over-hero .brand .brand-text{color:#ffffff}
+    .site-hdr.is-solid .brand .brand-text{color:#ffffff}
+    .main-nav{display:flex; gap:22px; align-items:center}
+    .main-nav a{position:relative; font-weight:600; text-decoration:none; padding:10px 6px}
+    .site-hdr.over-hero .main-nav a{color:#ffffff}
+    .site-hdr.is-solid .main-nav a{color:#ffffff}
+    .main-nav a:after{content:""; position:absolute; left:0; bottom:6px; width:0; height:2px; background:currentColor; transition:width .25s}
+    .main-nav a:hover:after{width:100%}
+    .hdr-actions{display:flex; align-items:center; gap:10px}
+    .menu-toggle{display:none; width:44px; height:44px; border-radius:12px; border:1px solid rgba(255,255,255,.45); background:rgba(0,0,0,.12); backdrop-filter: blur(10px)}
+    .site-hdr.is-solid .menu-toggle{border-color:#e5e5e5; background:#fafafa}
+    .menu-toggle span{display:block; width:18px; height:2px; background:#fff; margin:3px auto; border-radius:2px}
+    .site-hdr.is-solid .menu-toggle span{background:#222}
+    @media (max-width:880px){ .main-nav{display:none} .menu-toggle{display:inline-flex; align-items:center; justify-content:center} }
+    /* Drawer */
+    .drawer-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.35); opacity:0; visibility:hidden; transition:.25s; z-index:999}
+    .drawer-backdrop.open{opacity:1; visibility:visible}
+    .mobile-drawer{position:fixed; top:0; right:-84%; width:min(84%,360px); height:100dvh; background:#fff; box-shadow:-10px 0 30px rgba(0,0,0,.15); z-index:1000; transition:right .28s; display:flex; flex-direction:column}
+    .mobile-drawer.open{right:0}
+    .drawer-head{display:flex; align-items:center; justify-content:space-between; padding:16px; border-bottom:1px solid #eee}
+    .drawer-inner{display:flex; flex-direction:column; padding:8px 16px 18px}
+    .drawer-inner a{padding:14px 6px; border-bottom:1px solid #f3f3f3; color:#111; text-decoration:none; font-weight:650}
+    .drawer-close{width:38px; height:38px; border-radius:10px; border:1px solid #e5e5e5; background:#fafafa}
+    /* Fullscreen slider */
+    .slider-hero {position:relative; min-height:50dvh; width:100%; overflow:hidden;margin-top: 90px; padding-top:72px}
+    .slider-hero .slides{position:absolute; inset:0}
+    .slider-hero .slide{position:absolute; inset:0; opacity:0; transform:scale(1.06); transition:opacity .6s ease}
+    .slider-hero .slide img{width:100%; height:100%; object-fit:cover; display:block}
+    .slider-hero .slide.is-active{opacity:1; animation:heroZoomOut 3s ease forwards}
+    @keyframes heroZoomOut{ from{transform:scale(1.06)} to{transform:scale(1)} }
+    .slider-hero .dots{position:absolute; z-index:2; left:50%; bottom:18px; transform:translateX(-50%); display:flex; gap:8px}
+    .slider-hero .dots button{width:9px; height:9px; border-radius:50%; border:0; background:rgba(255,255,255,.5); cursor:pointer}
+    .slider-hero .dots button.is-on{background:#fff}
+    /* Logo swap */
+    .brand img{height:60px}
+    .logo-white{display:none}
+    .site-hdr.over-hero .logo-color{display:block}
+    .site-hdr.over-hero .logo-white{display:none}
+    .site-hdr.is-solid .logo-color{display:block}
+    .site-hdr.is-solid .logo-white{display:none}
+    /* Footer */
+    footer{background:#0b0b0b; color:#d7d7d7}
+    .footer-wrap{display:flex; align-items:center; justify-content:space-between; padding:24px 0}
+    .wrap{width:min(1200px, 92%); margin-inline:auto}
+    body{
+      background-color: #181717;
+      margin:0;
+       font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', Ubuntu, 'Noto Sans'
+    }
+  
+  /* --- Mobile adjustments (<=880px): 60% height and full width --- */
+  @media (max-width:880px){
+    body{overflow-x:hidden}
+    .slider-hero{min-height:60dvh; width:100vw; padding-top:72px}
+    .slider-hero .slides{inset:0; width:100vw}
+    .slider-hero .slide{inset:0}
+    .slider-hero .slide img{width:100vw; height:100%; object-fit:cover; object-position:center center; display:block}
+    .slider-hero .dots{bottom:12px}
+  }
+
+/* Enforce full width on all viewports */
+.slider-hero, .slider-hero .slides, .slider-hero .slide, .slider-hero .slide img{width:100%;}
+
+/* --- v22: remove figure default margins and force full-bleed --- */
+.slider-hero .slide{margin:0 !important; padding:0 !important; border:0}
+.slider-hero .slides{left:0; right:0}
+.slider-hero .slide img{display:block}
+html, body{width:100%; max-width:100%; overflow-x:hidden}
+
+/* v23: smooth animations (desktop autoplay always on) */
+.slider-hero .slide{will-change: transform, opacity}
+
+/* v24: caption overlay */
+.hero-caption{position:absolute; z-index:2; left:50%; bottom:72px; transform:translateX(-50%); text-align:center; color:#fff; max-width:min(92vw, 920px); padding:0 12px; opacity:0; translate:0 12px; transition:opacity .5s ease, translate .5s ease}
+.hero-caption.show{opacity:1; translate:0 0}
+.hero-caption h2{margin:0 0 8px 0; font-size:clamp(22px,3.2vw,44px); line-height:1.05; font-weight:800; text-shadow:0 6px 22px rgba(255, 255, 255, 0.45)}
+.hero-caption p{margin:0; font-size:clamp(14px,1.4vw,18px); opacity:.92; text-shadow:0 4px 18px rgba(255, 255, 255, 0.4)}
+
+/* === Productos destacados (cards) === */
+.featured{padding:42px 0 50px}
+.sucursales{padding:42px 0 50px}
+.featured-head{display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:18px}
+.featured-head h2{font-size:clamp(26px,3.3vw,42px); margin:0; color:#fff}
+.featured-head p{margin:.3rem 0 0 0; color:#fff}
+.featured-head .see-all{white-space:nowrap; display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; background:#eaf6ef; color:#1ea25a; text-decoration:none; font-weight:700; box-shadow:0 6px 18px rgba(30,162,90,.18)}
+.sucursales-head{display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:18px}
+.sucursales-head h2{font-size:clamp(26px,3.3vw,42px); margin:0; color:#fff}
+.sucursales-head p{margin:.3rem 0 0 0; color:#fff}
+.featured-head .see-all{white-space:nowrap; display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; background:#eaf6ef; color:#1ea25a; text-decoration:none; font-weight:700; box-shadow:0 6px 18px rgba(30,162,90,.18)}
+.featured-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+.sucursales-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+.card{background:#fff; border-radius:16px; overflow:hidden; position:relative; box-shadow:0 12px 30px rgba(0,0,0,.06); transition:transform .35s ease, box-shadow .35s ease}
+.card:hover{transform:translateY(-6px); box-shadow:0 18px 38px rgba(0,0,0,.12)}
+.card .media{aspect-ratio:4/3; position:relative; overflow:hidden}
+.card .media img{width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.02); transition:transform .55s ease}
+.card:hover .media img{transform:scale(1.08)}
+.card .meta{padding:14px 14px 16px}
+.card .meta .title{font-weight:800; margin:0 0 6px 0}
+.card .meta .sku{font-size:.9rem; opacity:.8; margin:0}
+.card .hover-reveal{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%); display:flex; align-items:end; justify-content:center; padding:18px; opacity:0; transition:opacity .35s ease}
+.card:hover .hover-reveal{opacity:1}
+.card .btn{display:inline-flex; padding:12px 16px; border-radius:12px; background:#2bb673; color:#fff; font-weight:800; text-decoration:none; transform:translateY(8px); transition:transform .35s ease}
+.card:hover .btn{transform:none}
+@media (max-width:1100px){ .featured-grid{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:820px){ .featured-grid{grid-template-columns:repeat(2,1fr)} .featured-head{flex-direction:column; align-items:flex-start} }
+@media (max-width:540px){ .featured-grid{grid-template-columns:1fr} }
+@media (max-width:1100px){ .sucursales-grid{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:820px){ .sucursales-grid{grid-template-columns:repeat(2,1fr)} .sucursales-head{flex-direction:column; align-items:flex-start} }
+@media (max-width:540px){ .sucursales-grid{grid-template-columns:1fr} }
+/* (replaced old history css) */
+.history{padding:60px 0 80px}
+.history-grid{display:grid; grid-template-columns:1.2fr 1fr; align-items:center; gap:32px}
+.history-media{margin:0; overflow:hidden; border-radius:16px; transform:translateX(-40px); opacity:0; transition:opacity .5s ease}
+.history-media img{display:block; width:100%; height:auto; transform:scale(1.06); will-change:transform}
+.history-copy{transform:translateX(40px); opacity:0; transition:opacity .5s ease}
+.history-copy h2{font-size:clamp(28px,3.6vw,46px); margin:0 0 12px 0; color:#fff;}
+.history-copy p{margin:0; color:#fff; font-size:clamp(15px,1.4vw,18px); line-height:1.6}
+/* active state when in view */
+.history.inview .history-media,
+.history.inview .history-copy{opacity:1}
+.history.inview .history-media{transform:translateX(0)}
+.history.inview .history-copy{transform:translateX(0)}
+/* subtle scroll parallax: they se juntan cuando está centrado y se separan al alejarse */
+.history[data-progress] .history-media img{transform:scale(calc(1.06 - (var(--p,0) * 0.06)))}
+.history[data-progress] .history-media{transform:translateX(calc(-40px * (1 - var(--p,0))))}
+.history[data-progress] .history-copy{transform:translateX(calc(40px * (1 - var(--p,0))))}
+
+@media (max-width:980px){
+  .history-grid{grid-template-columns:1fr; gap:18px}
+  /* Mobile animation: fade + slide up */
+  .history-media{transform:translateY(18px); opacity:0}
+  .history-copy{transform:translateY(24px); opacity:0}
+  .history.inview .history-media,
+  .history.inview .history-copy{opacity:1; transform:translateY(0)}
+  /* Keep subtle scale with progress */
+  .history[data-progress] .history-media img{transform:scale(calc(1.04 - (var(--p,0) * 0.04)))}
+}
+    
+.history-media, .history-copy{transform:none !important; opacity:1 !important; color:#fff;}
+.history{padding:36px 0 48px}
+
+
+/* v29: Nuestra historia (texto izq / imagen der) con animación robusta */
+.history{padding:60px 0 80px}
+.history-grid{display:grid; grid-template-columns:1fr 1.2fr; align-items:center; gap:32px}
+.history-copy, .history-media{will-change: transform, opacity; transition:transform .6s ease, opacity .6s ease}
+/* estados iniciales */
+@media (min-width:981px){
+  .history-copy{transform:translateX(-40px); opacity:0}
+  .history-media{transform:translateX(40px); opacity:0}
+  .history.inview .history-copy,
+  .history.inview .history-media{transform:translateX(0); opacity:1}
+  /* parallax suave al acercarse al centro */
+  .history[data-progress] .history-media img{transform:scale(calc(1.06 - (var(--p,0)*0.06))); transition:transform .2s}
+  .history-media img{width:100%; height:auto; display:block}
+}
+@media (max-width:980px){
+  .history-grid{grid-template-columns:1fr; gap:18px}
+  /* animación vertical en móvil */
+  .history-copy{transform:translateY(20px); opacity:0}
+  .history-media{transform:translateY(24px); opacity:0}
+  .history.inview .history-copy,
+  .history.inview .history-media{transform:translateY(0); opacity:1}
+  .history-media img{width:100%; height:auto; display:block; transform:scale(calc(1.02 - (var(--p,0)*0.02))); transition:transform .2s}
+}
+.history-copy h2{font-size:clamp(28px,3.6vw,46px); margin:0 0 12px 0; color:#fff}
+.history-copy p{margin:0; color:#fff; font-size:clamp(15px,1.4vw,18px); line-height:1.6}
+
+  @media (min-width: 1024px){
+  .promo-card{ max-width:520px; }
+}
+
+.promo-btn{ background:#25D366 !important; color:#111 !important; display:inline-flex; align-items:center; gap:.5rem; }
+.promo-btn svg{ width:18px; height:18px; }
+.grid { display:grid; grid-template-columns: 1.1fr 0.9fr; align-items:center; gap: 32px; max-width:1200px; height: 200px ;margin: 0 auto; padding: 180px 18px 180px; }
+.grid .badge { display:inline-flex; gap:8px; align-items:center; background: var(--bg-soft); color: var(--primary-700); padding:8px 12px; border-radius:999px; font-weight:600; }
+.grid h1 { font-size: clamp(28px, 3.6vw, 48px); line-height:1.08; margin: 14px 0 10px; }
+.grid p { font-size: clamp(15px, 1.6vw, 18px); color: var(--muted); margin: 8px 0 18px; color: #fff; }
+.grid .actions { display:flex; gap:12px; flex-wrap:wrap; }
+</style>
+<script defer="">
+  // Header state (transparent -> solid) and mobile drawer
+  (function(){
+    function qs(id){ return document.getElementById(id); }
+    const onReady = function(){
+      const hdr = document.querySelector('.site-hdr');
+      const hero = document.querySelector('.hero');
+      const backdrop = qs('drawerBackdrop');
+      const drawer = qs('mobileDrawer');
+      const openBtn = qs('menuToggle');
+      const closeBtn = qs('drawerClose');
+
+      // Guard if elements missing
+      if(!hdr){ return; }
+
+      // Transparent -> solid and logo switch
+      const setState = ()=>{
+        const limit = (hero?.offsetHeight || 120) - 20;
+        if (window.scrollY > limit){
+          hdr.classList.add('is-solid'); hdr.classList.remove('over-hero');
+          document.querySelector('.logo-color').style.display='block';
+          document.querySelector('.logo-white').style.display='none';
+        } else {
+          hdr.classList.remove('is-solid'); hdr.classList.add('over-hero');
+          document.querySelector('.logo-color').style.display='none';
+          document.querySelector('.logo-white').style.display='block';
+        }
+      };
+      setState();
+      window.addEventListener('scroll', setState, {passive:true});
+    // Drawer open/close
+      const open = ()=>{
+        if(drawer){ drawer.classList.add('open'); }
+        if(backdrop){ backdrop.classList.add('open'); }
+        document.body.classList.add('nav-open');
+        document.body.style.overflow='hidden';
+      };
+      const close = ()=>{
+        if(drawer){ drawer.classList.remove('open'); }
+        if(backdrop){ backdrop.classList.remove('open'); }
+        document.body.classList.remove('nav-open');
+        document.body.style.overflow='';
+      };
+      if(openBtn){ openBtn.addEventListener('click', open); }
+      if(closeBtn){ closeBtn.addEventListener('click', close); }
+      if(backdrop){ backdrop.addEventListener('click', close); }
+
+      // Fallback: make menu items clickable to close drawer
+      document.addEventListener('click', function(e){
+        if(e.target.closest('.drawer-inner a')){ close(); }
+      });
+    };
+    if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', onReady); } else { onReady(); }
+  })();
+</script>
+<link href="assets/css/styles.css" rel="stylesheet"/>
+<style>
+  /* === BB Promo Modal (rebuild v3) === */
+  .promo-backdrop{position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.6); backdrop-filter:blur(2px); z-index:9999; padding:16px;}
+  .promo-backdrop.show{display:flex; animation:promoFade .25s ease both;}
+  @keyframes promoFade{from{opacity:0} to{opacity:1}}
+  .promo-card{width:100%; max-width:560px; background:#0f0f10; color:#fff; border-radius:16px; overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,.5); transform:scale(.96); opacity:0; position:relative;}
+  .promo-card.show{animation:promoPop .35s cubic-bezier(.22,.61,.36,1) .05s both;}
+  @keyframes promoPop{to{opacity:1; transform:none}}
+  .promo-card img{display:block; width:100%; height:auto;}
+  .promo-meta{display:flex; gap:12px; align-items:center; justify-content:space-between; padding:12px 14px; font-size:14px;}
+  .promo-meta .left{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .promo-btn{appearance:none; border:0; background:#fff; color:#111; padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:600;}
+  .promo-close{position:absolute; top:10px; right:10px; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,.55);
+    color:#fff; border:1px solid rgba(255,255,255,.25); display:grid; place-items:center; cursor:pointer;}
+  .promo-close:after{content:'✕'; font-size:18px; line-height:1;}
+  @media (max-width:480px){ .promo-card{border-radius:12px} .promo-meta{font-size:13px; padding:10px} .promo-btn{padding:8px 10px} }
+  @media (prefers-reduced-motion: reduce){ .promo-backdrop,.promo-card{animation:none !important; transition:none !important} }
+  @media (min-width: 1024px){
+    .promo-card{ max-width:520px; }
+  }
+
+  .promo-btn{ background:#25D366 !important; color:#111 !important; display:inline-flex; align-items:center; gap:.5rem; }
+  .promo-btn svg{ width:18px; height:18px; }
+</style>
+<style>
+  /* === Basic section layout for Promociones (fallback) === */
+  .bb-section{padding: 0;}
+  .bb-section .col{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+  .bb-section img{max-width:100%;height:auto;border-radius:14px;}
+  @media(min-width:900px){.bb-section .txt,.bb-section .pic{flex:1 1 50%;}}
+</style>
+<style>
+  /* === Destacados: full-bleed cards with overlay text === */
+  #destacados .card, section[id*="destacad"] .card, .featured .card, .sucursales .card, .productos-destacados .card, .cards.destacados .card {
+    position: relative;
+    border: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+  #destacados .card img, section[id*="destacad"] .card img, .featured .card img, .sucursales .card img, .productos-destacados .card img, .cards.destacados .card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    aspect-ratio: 16/9;
+    transition: transform .6s ease;
+  }
+  #destacados .card:hover img, section[id*="destacad"] .card:hover img, .featured .card:hover img, .sucursales .card:hover img,.productos-destacados .card:hover img, .cards.destacados .card:hover img {
+    transform: scale(1.05);
+  }
+  #destacados .card h3, #destacados .card p,
+  section[id*="destacad"] .card h3, section[id*="destacad"] .card p,
+  .featured .card h3, .featured .card p,
+  .sucursales .card h3, .sucursales .card p,
+  .productos-destacados .card h3, .productos-destacados .card p,
+  .cards.destacados .card h3, .cards.destacados .card p {
+    position: absolute; left: 0; right: 0; margin: 0; color: #fff;
+    padding: 12px 16px; z-index: 2;
+  }
+  #destacados .card h3, section[id*="destacad"] .card h3, .featured .card h3, .sucursales .card h3, .productos-destacados .card h3, .cards.destacados .card h3 {
+    bottom: 34px; font-size: 1.1rem; line-height: 1.25; font-weight: 700; text-shadow: 0 2px 12px rgba(0,0,0,.5);
+  }
+  #destacados .card p, section[id*="destacad"] .card p, .featured .card p, .sucursales .card p, .productos-destacados .card p, .cards.destacados .card p {
+    bottom: 6px; opacity: .95; font-size: .92rem; text-shadow: 0 2px 10px rgba(0,0,0,.5);
+  }
+  #destacados .card::after, section[id*="destacad"] .card::after, .featured .card::after, .productos-destacados .card::after, .cards.destacados .card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,.35) 40%, rgba(0,0,0,0) 70%);
+    z-index: 1;
+  }
+  /* remove card inner paddings if any */
+  #destacados .card > *:not(img), section[id*="destacad"] .card > *:not(img),
+  .featured .card > *:not(img), .productos-destacados .card > *:not(img), .cards.destacados .card > *:not(img) {
+    padding: 0 !important; background: transparent !important; border: 0 !important;
+  }
+</style>
+<style>
+  /* === Promociones centered & responsive (final) === */
+  #promociones .container{max-width:1100px;margin:0 auto;}
+  #promociones .col{flex-direction:column;align-items:center;text-align:center;}
+  #promociones .txt{max-width:760px;}
+  #promociones .pic{width:100%;display:flex;justify-content:center;}
+  #promociones .pic img{width:100%;max-width:520px;height:auto;border-radius:14px;}
+</style>
+<style>
+  /* === Promociones pulse animation === */
+  #promociones .pic img{ animation: promoPulse 1.8s ease-in-out infinite; transform-origin: center; }
+  @keyframes promoPulse{
+    0%{ transform: scale(1); filter: none; }
+    50%{ transform: scale(1.03); filter: drop-shadow(0 6px 16px rgba(0,0,0,.2)); }
+    100%{ transform: scale(1); filter: none; }
+  }
+</style>
+<style>
+  /* === Promociones: pulse on section & image === */
+  #promociones .pic img{ animation: promoPulse 1.8s ease-in-out infinite; transform-origin: center; }
+  #promociones .container{ animation: promoPulse 2.4s ease-in-out infinite; }
+  @keyframes promoPulse{
+    0%{ transform: scale(1); filter: none; }
+    50%{ transform: scale(1.02); filter: drop-shadow(0 6px 16px rgba(0,0,0,.18)); }
+    100%{ transform: scale(1); filter: none; }
+  }
+</style>
+<style>
+  /* === Destacados: overlay CTA === */
+  section[id*="destacad"] .card, #destacados .card { position:relative; overflow:hidden; }
+  section[id*="destacad"] .card a[href*="producto"], section[id*="destacad"] .card a[href*="productos"],
+  #destacados .card a[href*="producto"], #destacados .card a[href*="productos"] {
+    position:absolute; left:50%; bottom:18px; transform:translate(-50%, 8px);
+    z-index:6; opacity:0; transition:opacity .35s ease, transform .35s ease;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+  }
+  section[id*="destacad"] .card:hover a[href*="producto"], section[id*="destacad"] .card:hover a[href*="productos"],
+  #destacados .card:hover a[href*="producto"], #destacados .card:hover a[href*="productos"] {
+    opacity:1; transform:translate(-50%, 0);
+  }
+</style>
+<style>
+/* === Visión & Valores: reuse pulse like Promociones === */
+</style>
+<style>
+  /* === Reveal on scroll (tipo "Misión") === */
+  .bb-reveal [aix-anim]{opacity:0; transform: translateY(14px) scale(.98); transition: opacity .6s ease, transform .6s ease;}
+  .bb-reveal.in-view [aix-anim]{opacity:1; transform: none;}
+  @media (prefers-reduced-motion: reduce){
+    .bb-reveal [aix-anim]{transition:none; transform:none; opacity:1}
+  }
+
+  /* === Visión & Valores - fix responsivo móvil === */
+  #vision .pic img, #valores .pic img{
+    width:100%;
+    max-width:100%;
+    height:auto;
+    object-fit:contain;
+  }
+  @media (max-width: 600px){
+    #vision .col, #valores .col{flex-direction:column;}
+    #vision .pic, #valores .pic{width:100%;}
+  }
+</style>
+<style>
+  /* === Destacados: botón 'Ver productos' por encima al seleccionar === */
+  .card.is-selected .cta { position: relative; z-index: 5; }
+  .card.is-selected { position: relative; }
+  .card.is-selected .cta.sticky-top { position:absolute; top:8px; right:8px; }
+</style>
+<style>
+  /* === Cards mobile tap: show CTA overlay above image === */
+  .card { position: relative; overflow: hidden; }
+  .card .media img { position: relative; z-index: 1; }
+  .card .hover-reveal { z-index: 3; }
+  .card.is-selected .hover-reveal { opacity: 1 !important; }
+</style>
+<style>
+  /* === Promociones (centrado + responsive) === */
+  .promos .container{max-width:1100px;margin:0 auto;padding:24px;}
+  .promos .col{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;text-align:center;}
+  .promos .txt{max-width:680px;}
+  .promos .pic{flex:1 1 420px;display:flex;justify-content:center;}
+  .promos .pic img{width:100%;max-width:920px;height:auto;border-radius:16px;display:block;}
+  @media (max-width: 640px){
+    .promos .col{flex-direction:column;}
+    .promos .pic{width:100%;}
+    .promos .txt{max-width:100%;}
+  }
+</style>
+<style>
+  /* === MVV responsive layout === */
+  .col.mvv{display:flex;flex-direction:column;gap:18px;align-items:center}
+  .col.mvv.reverse{flex-direction:column}
+  .col.mvv .pic{flex:1 1 50%;display:flex;justify-content:center}
+  .col.mvv .txt{flex:1 1 50%}
+  @media (min-width: 900px){
+    .col.mvv{flex-direction:row;align-items:center}
+    .col.mvv.reverse{flex-direction:row-reverse}
+  }
+  .bb-img-responsive{max-width:100%;height:auto;border-radius:16px;display:block}
+  @media (max-width:640px){.bb-img-responsive{border-radius:12px}}
+</style>
+<style>
+  /* === Align MVV to 'Nuestra Historia' layout === */
+  .history-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
+  .history-media img{max-width:100%;height:auto;border-radius:16px;display:block}
+  @media(min-width: 900px){
+    .history-grid{grid-template-columns:1fr 1fr}
+  }
+  /* tighten mobile spacing */
+  @media(max-width:640px){
+    .history-media img{border-radius:12px}
+  }
+</style>
+<style>
+  /* === MVV size & text centering tweak v2 === */
+  .col.mvv .history-media img{max-width:80%;margin-inline:auto}
+  .col.mvv .history-copy{max-width:56ch;margin-inline:auto}
+  @media(min-width:900px){
+    .col.mvv .history-media img{max-width:88%}
+    .col.mvv .history-copy{max-width:54ch}
+  }
+</style>
+<style>
+  /* === Hero text to left override === */
+  .hero, .bb-hero { position: relative; }
+  .hero .copy, .bb-hero .copy, .hero .content, .bb-hero .content{
+    justify-content: flex-start !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+  /* Por si usaran utilidades de alineación previas */
+  .hero .copy.right, .bb-hero .copy.right{ right: auto !important; left: 5%; }
+  .hero .copy{ left: 5%; max-width: 720px; }
+</style>
+<style>
+  /* === MVV sizing v4 (compact like sample) === */
+  .col.mvv .history-media{display:flex;justify-content:center}
+  .col.mvv .history-media img{
+    max-width:33%;
+    height:auto;
+    max-height:300px;
+    object-fit:cover;
+    border-radius:16px;
+  }
+  .col.mvv .history-copy{max-width:52ch;margin-inline:auto}
+  @media (max-width: 768px) {
+    .col.mvv .history-media img{
+      max-width:70%;
+      max-height:220px;
+      border-radius:12px;
+    }
+    .col.mvv .history-copy{max-width:50ch}
+  }
+</style>
+<style>
+  /* === MVV sizing (40%) + reveal animation === */
+  .mvv-section .history-media{display:flex;justify-content:center}
+  .mvv-section .history-media img{
+    max-width:40% !important;
+    height:auto !important;
+    max-height:300px !important;
+    object-fit:cover;
+    border-radius:16px;
+    display:block;
+    margin:0 auto;
+  }
+  .mvv-section .history-copy{max-width:56ch;margin-inline:auto}
+  @media (max-width: 768px){
+    .mvv-section .history-media img{
+      max-width:70% !important;
+      max-height:220px !important;
+      border-radius:12px;
+    }
+    .mvv-section .history-copy{max-width:52ch}
+  }
+
+  /* Reveal animation */
+  .reveal{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
+  .reveal.show{opacity:1; transform:none}
+</style>
+<style>
+  /* MVV compact fix (force) */
+  #mision img, #vision img, #valores img{
+    max-width:40% !important;
+    height:auto !important;
+    max-height:300px !important;
+    object-fit:cover;
+    border-radius:16px;
+  }
+  @media(max-width:768px){
+    #mision img, #vision img, #valores img{
+      max-width:70% !important;
+      max-height:220px !important;
+    }
+  }
+</style>
+</head>
+  <body>
+  <!-- === PROMO MODAL (rebuild v3) === -->
+  <!--<div id="bbPromoBackdrop" class="promo-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div id="bbPromoCard" class="promo-card">
+      <button class="promo-close" id="bbPromoClose" aria-label="Cerrar promoción"></button>
+      <img src="assets/img/promo_temporada.png?v=1756670833" alt="Promoción BB Recycling">
+      <div class="promo-meta">
+        <div class="left">
+          <strong>Energía que mueve a México</strong>
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;opacity:.9;">
+            <input type="checkbox" id="bbPromoNoHoy" style="accent-color:#00c389;"> No mostrar otra vez hoy
+          </label>
+        </div>
+        <button class="promo-btn" id="bbPromoGo"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.36c-.27-.14-1.6-.79-1.85-.88-.25-.1-.43-.14-.62.14-.18.27-.71.88-.87 1.06-.16.18-.32.2-.6.07-.27-.14-1.14-.42-2.17-1.34-1-.89-1.67-1.98-1.86-2.31-.2-.34-.02-.53.12-.67.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.62-1.5-.86-2.05-.23-.55-.46-.47-.62-.48l-.53-.01c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29s1 2.66 1.14 2.84c.14.18 1.97 3.01 4.77 4.22.67.29 1.19.46 1.59.59.67.21 1.28.18 1.76.11.5-.08 1.6-.65 1.83-1.27.23-.62.23-1.14.16-1.26-.07-.12-.25-.2-.52-.34zM27.98 15.95c0-6.61-5.37-11.98-11.98-11.98S4.02 9.34 4.02 15.95c0 2.11.56 4.09 1.55 5.8L4 28l6.4-1.68a11.914 11.914 0 0 0 5.6 1.43c6.61 0 11.98-5.37 11.98-11.98z"/></svg> Ordena ahora</button>
+      </div>
+    </div>
+  </div>-->
+  <!-- Header -->
+  <div data-include="header"></div>
+  <div aria-hidden="true" class="drawer-backdrop" id="drawerBackdrop"><a href="#promociones">Promociones</a></div>
+  <div data-include="drawer"></div>
+  <main>
+  <section class="hero slider-hero">
+  <div class="slides">
+    <figure class="slide is-active"><picture><source media="(max-width: 640px)" srcset="assets/img/hero1-mobile.webp"/><img alt="Hero 1" src="assets/hero1.jpg"/></picture></figure>
+    <figure class="slide"><picture><source media="(max-width: 640px)" srcset="assets/img/hero2-mobile.webp"/><img alt="Hero 2" src="assets/hero2.jpg"/></picture></figure>
+    <figure class="slide"><picture><source media="(max-width: 640px)" srcset="assets/img/hero3-mobile.webp"/><img alt="Hero 3" src="assets/hero3.jpg"/></picture></figure>
+    <figure class="slide"><picture><source media="(max-width: 640px)" srcset="assets/img/hero4-mobile.webp"/><img alt="Hero 4" src="assets/hero4.jpg"/></picture></figure>
+    <figure class="slide"><picture><source media="(max-width: 640px)" srcset="assets/img/hero5-mobile.webp"/><img alt="Hero 5" src="assets/hero5.jpg"/></picture></figure>
+  </div>
+  <div aria-hidden="true" class="dots"></div>
+  <div aria-live="polite" class="hero-caption"><h2></h2><p></p></div>
+  </section>
+  <div class="wrap bb-reveal">
+    <h2>Ordena al
+      <a href="https://wa.me/522225773967?text=Hola%20quisiera%20informaci%C3%B3n%20sobre%20bater%C3%ADas%20LTH" target="_blank" rel="noopener">
+        <i class="fa-solid fa-phone"></i>
+        222 577 3967
+        <img src="svg/call.svg" alt="">
+      </a>
+    </h2> 
+  </div>
+  <!--<div class="spacer"></div>-->
+    <!-- ===== Sucursales (carrusel) ===== -->
+  <section aria-labelledby="sucursales-title" class="bb-section " id="sucursales">
+    <div class="wrap">
+      <div class="sucursales-head" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; padding:24px 0;">
+        <div>
+          <h2 style="margin:0;">Sucursales</h2>
+          <p style="margin:4px 0 0;">Conoce nuestras sucursales.</p>
+        </div>
+        <a class="btn btn-primary"  target = "_blank" href="sucursales.html" style="padding:12px 18px; border-radius:8px; text-decoration:none;">Ver todas</a>
+      </div>
+      <div class="sucursales-grid" id="sucursalesGrid">
+      <!-- JS will inject 4 product cards -->
+      </div>
+    </div>
+  </section>
+  <!-- === Productos destacados === -->
+  <section class="featured wrap" id="featured">
+    <div class="featured-head">
+      <div>
+        <h2>Productos destacados</h2>
+        <p>Conoce algunos de nuestros productos destacados.</p>
+      </div>
+      <a aria-label="Ver todos los productos" target = "_blank" class="see-all" href="productos.html">Ver todos los productos</a>
+    </div>
+    <div class="featured-grid" id="featuredGrid">
+    <!-- JS will inject 4 product cards -->
+    </div>
+  </section>
+
+  <section class="featured wrap grid" id="featured">
+    <div class="featured-head">
+      <div>
+        <h2>Baterías</h2>
+        <p>Todas las baterías se distinguen por su excelente calidad, gran rendimiento, respaldo garantizado y tecnología de punta.</p>
+        <a aria-label="Ver todos los productos" target = "_blank" class="see-all" href="productos.html">Ver todos los productos</a>
+      </div>
+    </div>
+    <div class="picture">
+      <img src="assets/img/bateria.webp" alt="">
+    </div>
+  </section>
+
+  <section class="featured wrap grid" id="featured">
+    <div class="featured-head">
+      <div>
+        <h2>Moto Baterías</h2>
+        <p>Nuestras baterías para motocicletas ofrecen la mejor calidad y tecnología. Cumplen con las exigencias de los fabricantes de motocicletas, ofreciendo larga vida útil y alto rendimiento, lo que se traduce en comodidad, ahorro y seguridad.</p>
+        <a aria-label="Ver todos los productos" target = "_blank" class="see-all" href="productos.html">Ver todos los productos</a>
+      </div>
+    </div>
+    <div class="picture">
+      <img src="assets/img/motoBaterias.webp" alt="">
+    </div>
+  </section>
+  <!-- === Nuestra historia === -->
+  <!-- === Nuestra historia (text left / image right) === -->
+  <!--<section class="history wrap bb-reveal" id="nuestra-historia">
+    <h2>Nuestra Historia</h2>
+    <div class="history-grid">
+      <div class="history-copy">
+        43 años en el mercado con una cartera consolidada de clientes somos los mejores distribuidores para todo tipo de automóviles, camiones y equipo pesado y maquinaria.</p>
+      </div>
+      <figure class="history-media">
+        <img alt="Nuestra historia - BB Recycling" class="bb-img" loading="lazy" src="assets/1D2DD167-54C4-406A-8AF6-264338D6ED01.PNG"/>
+      </figure>
+    </div>
+  </section>
+
+  <section id="historia" class="bb-section" aix-anim="fade-up">
+    <div class="container">
+    </div>
+  </section>
+  <section id="promociones" class="promos bb-section">
+    <div class="container">
+      <div class="col">
+        <div class="txt">
+          <span class="eyebrow" style="display:inline-block;letter-spacing:.12em;font-weight:700;color:#00c389;margin-bottom:8px;">PROMOCIONES</span>
+          <h2 style="margin:0 0 8px;">¡Ofertas que encienden tu camino!</h2>
+          <p style="margin:0 0 16px;max-width:52ch;">Aprovecha nuestras promociones por temporada en baterías para automóvil, flotillas y equipo pesado. Servicio rápido, asesoría experta y el mejor precio entregando tu batería usada.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <button class="promo-btn" id="bbPromoGoSec" style="font-size:15px;">
+               WhatsApp icon 
+              <svg viewBox="0 0 32 32" aria-hidden="true" style="width:18px;height:18px;"><path fill="currentColor" d="M19.11 17.36c-.27-.14-1.6-.79-1.85-.88-.25-.1-.43-.14-.62.14-.18.27-.71.88-.87 1.06-.16.18-.32.2-.6.07-.27-.14-1.14-.42-2.17-1.34-1-.89-1.67-1.98-1.86-2.31-.2-.34-.02-.53.12-.67.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.62-1.5-.86-2.05-.23-.55-.46-.47-.62-.48l-.53-.01c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29s1 2.66 1.14 2.84c.14.18 1.97 3.01 4.77 4.22.67.29 1.19.46 1.59.59.67.21 1.28.18 1.76.11.5-.07 1.6-.66 1.82-1.3.23-.64.23-1.18.16-1.3-.07-.11-.25-.18-.52-.32zM26.67 5.33A10.67 10.67 0 0 0 5.6 23.13L4 28l4.97-1.57a10.67 10.67 0 1 0 17.7-21.1z"/></svg>
+              Ordena ahora
+            </button>
+            <a href="productos.html" class="promo-btn" style="text-decoration:none;background:#111;color:#fff;border:1px solid #333;">Ver catálogo</a>
+          </div>
+        </div>
+        <div class="pic aix-zoom">
+          <img src="assets/img/promo_temporada.png" alt="Promociones BB Recycling" aix-anim="zoom-in">
+        </div>
+      </div>
+    </div>
+  </section>
+
+   ===== Misión (debajo de Nuestra Historia) ===== 
+
+  <section class="history wrap bb-reveal" id="nuestra-historia-copy1">
+    <h2>MISIÓN</h2>
+
+    <div class="history-grid">
+      <div class="history-copy">
+            <p>Ser la empresa líder en la distribución y venta de acumuladores, lubricantes y filtros para garantizar con solidez el funcionamiento eficiente de vehículos automotores e industria. Mereciendo siempre la plena confianza de colaboradores, accionistas, clientes y proveedores.</p>
+            <p>Superar las expectativas de nuestros clientes a través de una administración profesional, con productos de calidad y servicio oportuno. Apoyando el uso inteligente de la tecnología e información, brindando asesoría, capacitación continua, oportunidades de desarrollo y justa retribución a nuestros clientes y personas que participan en la operación.</p>
+      </div>
+      <figure class="history-media">
+        <img class="bb-img" src="assets/mision_hist1.jpeg" alt="Misión - BB Recycling" loading="lazy"/>
+      </figure>
+    </div>
+  </section>
+
+  <section class="history wrap bb-reveal" id="nuestra-historia-copy2">
+    <h2>VALORES</h2>
+    <div class="history-grid" style="display:flex; flex-wrap:wrap; align-items:center; gap:40px;">
+      <figure class="history-media" style="flex:1 1 500px; min-width:280px;">
+        <img class="bb-img" src="assets/historia2_valores_new.png" alt="Valores - BB Recycling" loading="lazy" style="width:100%; height:auto; border-radius:12px;"/>
+      </figure>
+      <div class="history-copy" style="flex:1 1 500px; min-width:280px;">
+        <ul style="line-height:1.8; text-align:justify;">
+          <li><b>Servicio:</b> respuesta rápida y seguimiento desde WhatsApp y sucursales.</li>
+          <li><b>Confianza:</b> productos originales y garantías respaldadas por marcas líderes.</li>
+          <li><b>Cercanía:</b> red de centros en Puebla, Estado de México y Xalapa.</li>
+          <li><b>Eficiencia:</b> búsqueda por vehículo (marca/modelo/motor/año) para encontrar tu batería ideal.</li>
+          <li><b>Sustentabilidad:</b> manejo y reciclaje responsable de baterías usadas.</li>
+          <li><b>Transparencia:</b> precios claros y comunicación directa con el cliente.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="history wrap bb-reveal" id="nuestra-historia-copy3">
+    <h2>NUESTRA VISIÓN</h2>
+
+  <div class="history-grid">
+  <div class="history-copy">
+        <p>En Battery Boss Recycling, nuestra visión es consolidarnos como la red líder en distribución de baterías y soluciones energéticas en México, ofreciendo innovación, confianza y servicio de excelencia a cada cliente.</p>
+      </div>
+  <figure class="history-media">
+  <img class="bb-img" src="assets/historia3_vision.jpeg" alt="Visión - BB Recycling" loading="lazy"/>
+  </figure>
+  </div>
+  </section>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Misión (mejorada para desktop y móvil) -->
+
+  <!-- End Misión -->
+
+
+
+
+
+
+
+  <!-- Misión (insertada debajo de Sucursales) -->
+
+
+
+  <!-- === Nuestras redes === -->
+
+  <!--<section class="wrap redes bb-reveal" id="redes">
+      
+
+    <h2>Síguenos en redes</h2>
+    <div class="fb-feed">
+    <div class="fb-page" data-adapt-container-width="true" data-hide-cover="false" data-href="https://www.facebook.com/BBRECYCLINGMX/" data-show-facepile="true" data-small-header="true" data-tabs="timeline">
+    </div>
+    </div>
+    <p class="redes-cta">
+    <a class="btn btn-fb" href="https://www.facebook.com/BBRECYCLINGMX/" rel="noopener" target="_blank">Ver más en Facebook</a>
+    <a class="btn btn-ig" href="https://www.instagram.com/bb.recycling.mx/" rel="noopener" target="_blank">Ver más en Instagram</a>
+    </p>
+  </section>-->
+  <section class="wrap redes" id="redes">
+    <h2>Síguenos en redes</h2>
+    <p>Síguenos y entérate de novedades en tiempo real:</p>
+    <div class="social-actions">
+      <p class="redes-cta">
+        <a class="btn btn-fb" href="https://www.facebook.com/BBRECYCLINGMX/" rel="noopener" target="_blank">Ver más en Facebook</a>
+        <a class="btn btn-ig" href="https://www.instagram.com/bb.recycling.mx/" rel="noopener" target="_blank">Ver más en Instagram</a>
+      </p>
+      <!--<a class="btn-outline" href="https://www.instagram.com/bb.recycling.mx?igsh=cWp1aWt0eW50OXho" rel="noopener" target="_blank">
+        <i class="fa-brands fa-instagram"></i>Instagram</a><a class="btn-outline" href="https://www.facebook.com/share/19maVVxwSk/?mibextid=wwXIfr" rel="noopener" target="_blank">
+        <i class="fa-brands fa-facebook"></i> Facebook</a>-->
+    </div>
+    <div class="social-grid">
+        <div class="fb-embed">
+          <div class="fb-page" data-adapt-container-width="true" data-height="560" data-hide-cover="false" data-href="https://m.facebook.com/BBRECYCLINGMX/" data-show-facepile="false" data-small-header="true" data-tabs="timeline" data-width="500">
+          </div>
+        </div>
+      <div class="ig-embed">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DEX845ZsBx3/" data-instgrm-version="14" style="background:#000; border:0; margin:0 auto; max-width:540px; width:100%;">
+          <a href="https://www.instagram.com/p/DEX845ZsBx3/" rel="noopener" target="_blank">Ver publicación en Instagram</a>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+  </main>
+  <div data-include="footer"></div>
+  <script>
+    (function(){
+      function qs(id){ return document.getElementById(id); }
+      // Header + drawer (keep existing behavior)
+      const hdr = document.querySelector('.site-hdr');
+      const heroEl = document.querySelector('.slider-hero');
+      const backdrop = qs('drawerBackdrop');
+      const drawer = qs('mobileDrawer');
+      const openBtn = qs('menuToggle');
+      const closeBtn = qs('drawerClose');
+
+      const setState = ()=>{
+        const limit = (heroEl?.offsetHeight || 120) - 20;
+        if (window.scrollY > limit){ hdr?.classList.add('is-solid'); hdr?.classList.remove('over-hero'); }
+        else { hdr?.classList.remove('is-solid'); hdr?.classList.add('over-hero'); }
+      };
+      window.addEventListener('scroll', setState, {passive:true});
+      window.addEventListener('load', setState);
+      setState();
+
+      const open = ()=>{ drawer?.classList.add('open'); backdrop?.classList.add('open'); document.body.style.overflow='hidden'; };
+      const close = ()=>{ drawer?.classList.remove('open'); backdrop?.classList.remove('open'); document.body.style.overflow=''; };
+      openBtn?.addEventListener('click', open);
+      closeBtn?.addEventListener('click', close);
+      backdrop?.addEventListener('click', close);
+      document.addEventListener('click', (e)=>{ if(e.target.closest('.drawer-inner a')) close(); });
+
+      // === Slider (setInterval-based) ===
+      const slides = Array.from(document.querySelectorAll('.slider-hero .slide'));
+      const dotsWrap = document.querySelector('.slider-hero .dots');
+      const capBox = document.querySelector('.slider-hero .hero-caption');
+      const capH = capBox?.querySelector('h2');
+      const capP = capBox?.querySelector('p');
+      const phrases = [
+        ["Energía que sí arranca", "Baterías confiables para cada viaje."],
+        ["Más vida útil, menos problemas", "Calidad BB Recycling garantizada."],
+        ["Potencia sin límites", "Rendimiento superior, donde lo necesites."],
+        ["Listos cuando tú lo estés", "Cobertura y servicio a tu alcance."],
+        ["Confianza que dura", "Somos tu aliado en el camino."]
+      ];
+
+      let i = 0;
+      const dur = 10000;
+      // build dots
+      slides.forEach((_, idx)=>{
+        const b = document.createElement('button');
+        b.addEventListener('click', ()=>show(idx, true));
+        dotsWrap.appendChild(b);
+      });
+      const dots = ()=>dotsWrap.querySelectorAll('button');
+
+      function updateCaption(n){
+        if(!capBox) return;
+        const pair = phrases[n % phrases.length];
+        capH.textContent = pair[0];
+        capP.textContent = pair[1];
+        capBox.classList.remove('show');
+        // small reflow to restart animation
+        void capBox.offsetWidth;
+        capBox.classList.add('show');
+      }
+
+      function show(n, manual=false){
+        slides[i].classList.remove('is-active');
+        i = (n + slides.length) % slides.length;
+        slides[i].classList.add('is-active');
+        dots().forEach((d, idx)=> d.classList.toggle('is-on', idx===i));
+        updateCaption(i);
+      }
+
+      // init
+      if (slides.length){
+        slides[0].classList.add('is-active');
+        updateCaption(0);
+        dots().forEach((d, idx)=> d.classList.toggle('is-on', idx===0));
+        // autoplay with interval (robust for desktop)
+        let timer = setInterval(()=> show(i+1), dur);
+        // pause when tab hidden
+        document.addEventListener('visibilitychange', ()=>{
+          if(document.hidden){ clearInterval(timer); }
+          else { timer = setInterval(()=> show(i+1), dur); }
+        });
+      }
+    })();
+  </script>
+  <script>
+    // === Featured products ===
+      // Updated to show "Ver productos" only on hover with animation.
+      (function(){
+      const grid = document.getElementById('sucursalesGrid');
+      if(!grid) return;
+
+      const DATA_URL = 'assets/data/centers.json?v=4';
+      const overrideImgs = [
+          'assets/img/bb-logo.png',
+          'assets/img/bb-logo.png',
+          'assets/img/bb-logo.png',
+          'assets/img/bb-logo.png'
+      ];
+
+      function cardHTML(p, idx){
+          const img = overrideImgs[idx % overrideImgs.length];
+          const nombre = p.nombre;
+          const q = encodeURIComponent(`${p.nombre} ${p.ciudad} ${p.estado}`.trim());
+          const gmaps = `https://www.google.com/maps/search/?api=1&query=${q}`;
+          return (
+          '<article class="card product">'+
+              '<div class="thumb">'+
+              '<img loading="lazy" decoding="async" alt="'+(nombre)+'" src="'+img+'">'+
+              '<div class="hover-reveal">'+
+                  '<a class="btn btn-map" target = "_blank" href="'+(gmaps)+'">Ver sucursal</a>'+
+              '</div>'+
+              '</div>'+
+              '<div class="meta">'+
+              '<h3 class="title">'+ nombre +'</h3>'+
+              '</div>'+
+          '</article>'
+          );
+      }
+
+      function render(items){
+          const four = items.slice(0,4);
+          grid.innerHTML = four.map((p, i)=> cardHTML(p, i)).join('');
+      }
+
+      async function load(){
+          try{
+          const res = await fetch(DATA_URL, {cache:'no-store'});
+          const data = await res.json();
+          const items = Array.isArray(data) ? data : (Array.isArray(data?.products) ? data.products : []);
+          if(!items.length) throw new Error('empty');
+          render(items);
+          }catch(e){
+          render([
+              {nombre:'Battery Boss Recycling Suc. 19 PTE', sku:''},
+              {nombre:'battery Boss Recycling suc. VALSEQUILLO', sku:''},
+              {nombre:'Battery Boss Recycling Suc. 11 SUR', sku:''},
+              {nombre:'Battery Boss Recycling Suc. AMOZOC', sku:''}
+          ]);
+          console.warn('Featured fallback used:', e && e.message);
+          }
+      }
+      if(document.readyState==='loading'){
+          document.addEventListener('DOMContentLoaded', load);
+      }else{
+          load();
+      }
+      })();
+  </script>
+  <script>
+      // === Featured products ===
+      // Updated to show "Ver productos" only on hover with animation.
+      (function(){
+      const grid = document.getElementById('featuredGrid');
+      if(!grid) return;
+
+      const DATA_URL = 'assets/data/products-bb-all.json?v=1';
+      const overrideImgs = [
+          'assets/img/products/bateria_l_34_600.png',
+          'assets/img/products/bateria_h_99_lbn1_470.png',
+          'assets/img/products/bateria_h_34_650.png',
+          'assets/img/products/bateria_h_49_ln5_850.png',
+          'assets/img/products/bateria_optima_azul_d34m.png'
+      ];
+
+      function cardHTML(p, idx){
+          const img = overrideImgs[idx % overrideImgs.length];
+          const name = p.name || p.title || p.sku || 'Batería';
+          const sku  = p.sku || p.code || '';
+          return (
+          '<article class="card product">'+
+              '<div class="thumb">'+
+              '<img loading="lazy" decoding="async" alt="'+(sku||name)+'" src="'+img+'">'+
+              '<div class="hover-reveal">'+
+                  '<a class="btn btn-primary" target = "_blank" href="productos.html">Ver productos</a>'+
+              '</div>'+
+              '</div>'+
+              '<div class="meta">'+
+              '<h3 class="title">'+ name +'</h3>'+
+              (sku ? '<p class="sku">SKU: '+ sku +'</p>' : '')+
+              '</div>'+
+          '</article>'
+          );
+      }
+
+      function render(items){
+          const four = items.slice(0,4);
+          grid.innerHTML = four.map((p, i)=> cardHTML(p, i)).join('');
+      }
+
+      async function load(){
+          try{
+          const res = await fetch(DATA_URL, {cache:'no-store'});
+          const data = await res.json();
+          const items = Array.isArray(data) ? data : (Array.isArray(data?.products) ? data.products : []);
+          if(!items.length) throw new Error('empty');
+          render(items);
+          }catch(e){
+          render([
+              {name:'Batería L-34-600', sku:'L-34-600'},
+              {name:'Batería H-99 (LBN1)-470', sku:'H-99(LBN1)-470'},
+              {name:'Batería H-34-650', sku:'H-34-650'},
+              {name:'Batería H-49 (LN5)-850', sku:'H-49(LN5)-850'}
+          ]);
+          console.warn('Featured fallback used:', e && e.message);
+          }
+      }
+      if(document.readyState==='loading'){
+          document.addEventListener('DOMContentLoaded', load);
+      }else{
+          load();
+      }
+      })();
+  </script>
+  <script>
+    // v29 Scroll animation for 'Nuestra historia' (reliable)
+    (function(){
+      const sec = document.getElementById('nuestra-historia');
+      if(!sec) return;
+      const compute = ()=>{
+        const r = sec.getBoundingClientRect();
+        const vh = Math.max(1, window.innerHeight || document.documentElement.clientHeight);
+        const center = r.top + r.height/2;
+        const p = 1 - Math.min(1, Math.max(0, Math.abs((center - vh/2) / (vh/2))));
+        sec.style.setProperty('--p', p.toFixed(3));
+        sec.setAttribute('data-progress','');
+      };
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ sec.classList.add('inview'); }
+          else{ sec.classList.remove('inview'); }
+          compute();
+        });
+      }, {threshold:[0, .15, .35, .6, .85, 1], rootMargin:'-5% 0px -5% 0px'});
+      io.observe(sec);
+      window.addEventListener('scroll', compute, {passive:true});
+      window.addEventListener('resize', compute);
+      compute();
+    })();
+  </script>
+  <script src="assets/js/main.js?v=99"></script>
+  <div id="fb-root"></div>
+  <!--<script>
+    window.fbAsyncInit = function() {
+      FB.init({ xfbml: true, version: 'v20.0' });
+      // Safety: parse again in case the SDK loaded before DOM
+      try { FB.XFBML.parse(); } catch(e){}
+    };
+  </script>-->
+  <script>
+    (function(){
+      const sec = document.querySelector('#redes');
+      if(!sec) return;
+      // Intersection observer to toggle 'in-view'
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ sec.classList.add('in-view'); }
+          else{ sec.classList.remove('in-view'); }
+        });
+      }, {threshold: 0.2});
+      io.observe(sec);
+
+      // Subtle tilt on mouse move (desktop only)
+      function tilt(e){
+        const r = sec.getBoundingClientRect();
+        const cx = r.left + r.width/2;
+        const cy = r.top + r.height/2 + window.scrollY;
+        const dx = (e.pageX - cx) / r.width;
+        const dy = (e.pageY - cy) / r.height;
+        const max = 6; // degrees
+        sec.style.setProperty('--tiltX', (dy * -max).toFixed(2) + 'deg');
+        sec.style.setProperty('--tiltY', (dx * max).toFixed(2) + 'deg');
+      }
+      function reset(){ sec.style.setProperty('--tiltX','0deg'); sec.style.setProperty('--tiltY','0deg'); }
+      if (window.matchMedia('(pointer:fine)').matches){
+        sec.addEventListener('mousemove', tilt);
+        sec.addEventListener('mouseleave', reset);
+      }
+    })();
+  </script>
+  <script src="assets/js/includes.js?v=99"></script>
+  <script async="" crossorigin="anonymous" defer="" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&amp;version=v20.0"></script>
+  <script async="" crossorigin="anonymous" defer="" src="https://www.instagram.com/embed.js"></script>
+  <script>
+    (function(){
+      function parseFB(){
+        if (window.FB && FB.XFBML && FB.XFBML.parse) FB.XFBML.parse();
+      }
+      (document.readyState==='loading')
+        ? document.addEventListener('DOMContentLoaded', parseFB)
+        : parseFB();
+    })();
+  </script>
+  <script>
+    (()=>{
+      const today = new Date().toISOString().slice(0,10);
+      const LS_KEY = 'bbpromo-hide-' + today + '-v3'; // evita claves viejas
+      const params = new URLSearchParams(location.search);
+      const force = params.get('promo') === '1';
+      const off   = params.get('promo') === '0';
+
+      const backdrop = document.getElementById('bbPromoBackdrop');
+      const card = document.getElementById('bbPromoCard');
+      const btnClose = document.getElementById('bbPromoClose');
+      const cbNoHoy = document.getElementById('bbPromoNoHoy');
+      const btnGo = document.getElementById('bbPromoGo');
+
+      function show(){
+        backdrop.classList.add('show');
+        card.classList.add('show');
+        backdrop.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function hide(){
+        backdrop.classList.remove('show');
+        card.classList.remove('show');
+        backdrop.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        if(cbNoHoy && cbNoHoy.checked){ localStorage.setItem(LS_KEY, '1'); }
+      }
+
+      // Lógica de despliegue
+      const hidden = localStorage.getItem(LS_KEY) === '1';
+      if (!off && (force || !hidden)) {
+        // Ensambla después de un pequeño delay para permitir pintar el hero
+        setTimeout(show, 300);
+      }
+
+      // Eventos
+      btnClose?.addEventListener('click', hide);
+      backdrop?.addEventListener('click', (e)=>{ if(e.target === backdrop) hide(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') hide(); });
+      btnGo?.addEventListener('click', ()=>{
+        window.location.href = (window.promotionsURL || '/productos.html#promos');
+      });
+
+      // Exponer helpers para depurar desde consola
+      window.__BBPROMO__ = { show, hide, key: LS_KEY };
+    })();
+  </script>
+  <script>window.bbWhatsApp = window.bbWhatsApp || '521234567890';</script>
+  <script>
+    (()=>{
+      const btn = document.getElementById('bbPromoGoSec');
+      if (btn){
+        btn.addEventListener('click', ()=>{
+          const phone = (window.bbWhatsApp || '521234567890').replace(/\D/g,'');
+          const msg = 'Hola, estoy interesado en la promoción (sección Promociones). URL: ' + location.href;
+          const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+          window.open(url, '_blank', 'noopener');
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function(){
+      const secs = document.querySelectorAll('.bb-reveal');
+      if (!secs.length) return;
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if (e.isIntersecting){ e.target.classList.add('in-view'); }
+          else { e.target.classList.remove('in-view'); }
+        });
+      }, {threshold: 0.2});
+      secs.forEach(s=> io.observe(s));
+    })();
+  </script>
+  <script>
+    document.addEventListener('click', function(e){
+      const card = e.target.closest('.card');
+      if(!card) return;
+      // toggle selection when tapping anywhere in the card or specifically on a selector class
+      card.classList.toggle('is-selected');
+      const cta = card.querySelector('.cta');
+      if (cta){
+        if (card.classList.contains('is-selected')) cta.classList.add('sticky-top');
+        else cta.classList.remove('sticky-top');
+      }
+    });
+  </script>
+  </body>
+</html>

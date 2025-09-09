@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Batería LTH L-34-600",
+    "sku": "L-34-600",
+    "desc": "Batería automotriz libre de mantenimiento con 48 meses de garantía. Ideal para vehículos compactos y medianos."
+  },
+  {
+    "name": "Batería LTH Hi-Tec 99",
+    "sku": "H-99 (LBN1)-470",
+    "desc": "Batería Hi-Tec con 4 años de garantía. Para autos europeos y de mayor demanda eléctrica; mayor poder y durabilidad."
+  },
+  {
+    "name": "Batería LTH Hi-Tec 34",
+    "sku": "H-34-650",
+    "desc": "Batería libre de mantenimiento con hasta 60 meses de garantía. Recomendable para camionetas, SUVs y autos de gama media/alta."
+  },
+  {
+    "name": "Batería LTH Hi-Tec 49 (LN5-850)",
+    "sku": "H-49 (LN5)-850",
+    "desc": "Batería de gran capacidad con 60 meses de garantía. Ideal para vehículos de carga pesada y motores diésel de alto consumo."
+  }
+]

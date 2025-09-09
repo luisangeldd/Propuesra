@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trayectoria – Battery Boss Recycling</title>
+  <meta name="description" content="Hitos y crecimiento de Battery Boss Recycling en México.">
+  <link href="assets/css/enhancements.css?v=99" rel="stylesheet"/>
+  <style>
+    h1, h2, h3, p{
+      color: #fff;
+    }
+    /* Header transparent -> white */
+    .site-hdr{position:fixed; top:0; left:0; right:0; z-index:1000; transition:background-color .25s, box-shadow .25s, border-color .25s; border-bottom:1px solid transparent}
+    .site-hdr.over-hero{background:#0f2d63; border-bottom-color:#153672; box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .site-hdr.is-solid{background:#0f2d63; border-bottom-color:#153672; box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .hdr-row{display:flex; align-items:center; justify-content:space-between; gap:18px; min-height:72px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+    .brand .brand-text{font-weight:800; letter-spacing:.2px}
+    .site-hdr.over-hero .brand .brand-text{color:#ffffff}
+    .site-hdr.is-solid .brand .brand-text{color:#ffffff}
+    .main-nav{display:flex; gap:22px; align-items:center}
+    .main-nav a{position:relative; font-weight:600; text-decoration:none; padding:10px 6px}
+    .site-hdr.over-hero .main-nav a{color:#ffffff}
+    .site-hdr.is-solid .main-nav a{color:#ffffff}
+    .main-nav a:after{content:""; position:absolute; left:0; bottom:6px; width:0; height:2px; background:currentColor; transition:width .25s}
+    .main-nav a:hover:after{width:100%}
+    .hdr-actions{display:flex; align-items:center; gap:10px}
+    .menu-toggle{display:none; width:44px; height:44px; border-radius:12px; border:1px solid rgba(255,255,255,.45); background:rgba(0,0,0,.12); backdrop-filter: blur(10px)}
+    .site-hdr.is-solid .menu-toggle{border-color:#e5e5e5; background:#fafafa}
+    .menu-toggle span{display:block; width:18px; height:2px; background:#fff; margin:3px auto; border-radius:2px}
+    .site-hdr.is-solid .menu-toggle span{background:#222}
+    @media (max-width:880px){ .main-nav{display:none} .menu-toggle{display:inline-flex; align-items:center; justify-content:center} }
+    /* Drawer */
+    .drawer-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.35); opacity:0; visibility:hidden; transition:.25s; z-index:999}
+    .drawer-backdrop.open{opacity:1; visibility:visible}
+    .mobile-drawer{position:fixed; top:0; right:-84%; width:min(84%,360px); height:100dvh; background:#fff; box-shadow:-10px 0 30px rgba(0,0,0,.15); z-index:1000; transition:right .28s; display:flex; flex-direction:column}
+    .mobile-drawer.open{right:0}
+    .drawer-head{display:flex; align-items:center; justify-content:space-between; padding:16px; border-bottom:1px solid #eee}
+    .drawer-inner{display:flex; flex-direction:column; padding:8px 16px 18px}
+    .drawer-inner a{padding:14px 6px; border-bottom:1px solid #f3f3f3; color:#111; text-decoration:none; font-weight:650}
+    .drawer-close{width:38px; height:38px; border-radius:10px; border:1px solid #e5e5e5; background:#fafafa}
+    /* Fullscreen slider */
+    .slider-hero {position:relative; width:100%; overflow:hidden;margin-top: 90px; padding-top:72px}
+    .slider-hero .slides{position:absolute; inset:0}
+    .slider-hero .slide{position:absolute; inset:0; opacity:0; transform:scale(1.06); transition:opacity .6s ease}
+    .slider-hero .slide img{width:100%; height:100%; object-fit:cover; display:block}
+    .slider-hero .slide.is-active{opacity:1; animation:heroZoomOut 3s ease forwards}
+    @keyframes heroZoomOut{ from{transform:scale(1.06)} to{transform:scale(1)} }
+    .slider-hero .dots{position:absolute; z-index:2; left:50%; bottom:18px; transform:translateX(-50%); display:flex; gap:8px}
+    .slider-hero .dots button{width:9px; height:9px; border-radius:50%; border:0; background:rgba(255,255,255,.5); cursor:pointer}
+    .slider-hero .dots button.is-on{background:#fff}
+    /* Logo swap */
+    .brand img{height:60px}
+    .logo-white{display:none}
+    .site-hdr.over-hero .logo-color{display:block}
+    .site-hdr.over-hero .logo-white{display:none}
+    .site-hdr.is-solid .logo-color{display:block}
+    .site-hdr.is-solid .logo-white{display:none}
+    /* Footer */
+    footer{background:#0b0b0b; color:#d7d7d7}
+    .footer-wrap{display:flex; align-items:center; justify-content:space-between; padding:24px 0}
+    .wrap{width:min(1200px, 92%); margin-inline:auto}
+    body{
+      background-color: #181717;
+      margin:0;
+        font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', Ubuntu, 'Noto Sans'
+    }
+    /* --- Mobile adjustments (<=880px): 60% height and full width --- */
+    @media (max-width:880px){
+      body{overflow-x:hidden}
+      .slider-hero{min-height:60dvh; width:100vw; padding-top:72px}
+      .slider-hero .slides{inset:0; width:100vw}
+      .slider-hero .slide{inset:0}
+      .slider-hero .slide img{width:100vw; height:100%; object-fit:cover; object-position:center center; display:block}
+      .slider-hero .dots{bottom:12px}
+    }
+
+    /* Enforce full width on all viewports */
+    .slider-hero, .slider-hero .slides, .slider-hero .slide, .slider-hero .slide img{width:100%;}
+
+    /* --- v22: remove figure default margins and force full-bleed --- */
+    .slider-hero .slide{margin:0 !important; padding:0 !important; border:0}
+    .slider-hero .slides{left:0; right:0}
+    .slider-hero .slide img{display:block}
+    html, body{width:100%; max-width:100%; overflow-x:hidden}
+
+    /* v23: smooth animations (desktop autoplay always on) */
+    .slider-hero .slide{will-change: transform, opacity}
+
+    /* v24: caption overlay */
+    .hero-caption{position:absolute; z-index:2; left:50%; bottom:72px; transform:translateX(-50%); text-align:center; color:#fff; max-width:min(92vw, 920px); padding:0 12px; opacity:0; translate:0 12px; transition:opacity .5s ease, translate .5s ease}
+    .hero-caption.show{opacity:1; translate:0 0}
+    .hero-caption h2{margin:0 0 8px 0; font-size:clamp(22px,3.2vw,44px); line-height:1.05; font-weight:800; text-shadow:0 6px 22px rgba(255, 255, 255, 0.45)}
+    .hero-caption p{margin:0; font-size:clamp(14px,1.4vw,18px); opacity:.92; text-shadow:0 4px 18px rgba(255, 255, 255, 0.4)}
+
+    /* === Productos destacados (cards) === */
+    .featured{padding:42px 0 50px}
+    .sucursales{padding:42px 0 50px}
+    .featured-head{display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:18px}
+    .featured-head h2{font-size:clamp(26px,3.3vw,42px); margin:0; color:#fff}
+    .featured-head p{margin:.3rem 0 0 0; color:#fff}
+    .featured-head .see-all{white-space:nowrap; display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; background:#eaf6ef; color:#1ea25a; text-decoration:none; font-weight:700; box-shadow:0 6px 18px rgba(30,162,90,.18)}
+    .sucursales-head{display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:18px}
+    .sucursales-head h2{font-size:clamp(26px,3.3vw,42px); margin:0; color:#fff}
+    .sucursales-head p{margin:.3rem 0 0 0; color:#fff}
+    .featured-head .see-all{white-space:nowrap; display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; background:#eaf6ef; color:#1ea25a; text-decoration:none; font-weight:700; box-shadow:0 6px 18px rgba(30,162,90,.18)}
+    .featured-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    .sucursales-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    .card{background:#fff; border-radius:16px; overflow:hidden; position:relative; box-shadow:0 12px 30px rgba(0,0,0,.06); transition:transform .35s ease, box-shadow .35s ease}
+    .card:hover{transform:translateY(-6px); box-shadow:0 18px 38px rgba(0,0,0,.12)}
+    .card .media{aspect-ratio:4/3; position:relative; overflow:hidden}
+    .card .media img{width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.02); transition:transform .55s ease}
+    .card:hover .media img{transform:scale(1.08)}
+    .card .meta{padding:14px 14px 16px}
+    .card .meta .title{font-weight:800; margin:0 0 6px 0}
+    .card .meta .sku{font-size:.9rem; opacity:.8; margin:0}
+    .card .hover-reveal{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%); display:flex; align-items:end; justify-content:center; padding:18px; opacity:0; transition:opacity .35s ease}
+    .card:hover .hover-reveal{opacity:1}
+    .card .btn{display:inline-flex; padding:12px 16px; border-radius:12px; background:#2bb673; color:#fff; font-weight:800; text-decoration:none; transform:translateY(8px); transition:transform .35s ease}
+    .card:hover .btn{transform:none}
+    @media (max-width:1100px){ .featured-grid{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:820px){ .featured-grid{grid-template-columns:repeat(2,1fr)} .featured-head{flex-direction:column; align-items:flex-start} }
+    @media (max-width:540px){ .featured-grid{grid-template-columns:1fr} }
+    @media (max-width:1100px){ .sucursales-grid{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:820px){ .sucursales-grid{grid-template-columns:repeat(2,1fr)} .sucursales-head{flex-direction:column; align-items:flex-start} }
+    @media (max-width:540px){ .sucursales-grid{grid-template-columns:1fr} }
+    /* (replaced old history css) */
+    .history{padding:60px 0 80px}
+    .history-grid{display:grid; grid-template-columns:1.2fr 1fr; align-items:center; gap:32px}
+    .history-media{margin:0; overflow:hidden; border-radius:16px; transform:translateX(-40px); opacity:0; transition:opacity .5s ease}
+    .history-media img{display:block; width:100%; height:auto; transform:scale(1.06); will-change:transform}
+    .history-copy{transform:translateX(40px); opacity:0; transition:opacity .5s ease}
+    .history-copy h2{font-size:clamp(28px,3.6vw,46px); margin:0 0 12px 0; color:#fff;}
+    .history-copy p{margin:0; color:#fff; font-size:clamp(15px,1.4vw,18px); line-height:1.6}
+    /* active state when in view */
+    .history.inview .history-media,
+    .history.inview .history-copy{opacity:1}
+    .history.inview .history-media{transform:translateX(0)}
+    .history.inview .history-copy{transform:translateX(0)}
+    /* subtle scroll parallax: they se juntan cuando está centrado y se separan al alejarse */
+    .history[data-progress] .history-media img{transform:scale(calc(1.06 - (var(--p,0) * 0.06)))}
+    .history[data-progress] .history-media{transform:translateX(calc(-40px * (1 - var(--p,0))))}
+    .history[data-progress] .history-copy{transform:translateX(calc(40px * (1 - var(--p,0))))}
+
+    @media (max-width:980px){
+      .history-grid{grid-template-columns:1fr; gap:18px}
+      /* Mobile animation: fade + slide up */
+      .history-media{transform:translateY(18px); opacity:0}
+      .history-copy{transform:translateY(24px); opacity:0}
+      .history.inview .history-media,
+      .history.inview .history-copy{opacity:1; transform:translateY(0)}
+      /* Keep subtle scale with progress */
+      .history[data-progress] .history-media img{transform:scale(calc(1.04 - (var(--p,0) * 0.04)))}
+    }
+        
+    .history-media, .history-copy{transform:none !important; opacity:1 !important; color:#fff;}
+    .history{padding:36px 0 48px}
+
+
+    /* v29: Nuestra historia (texto izq / imagen der) con animación robusta */
+    .history{padding:60px 0 80px}
+    .history-grid{display:grid; grid-template-columns:1fr 1.2fr; align-items:center; gap:32px}
+    .history-copy, .history-media{will-change: transform, opacity; transition:transform .6s ease, opacity .6s ease}
+    /* estados iniciales */
+    @media (min-width:981px){
+      .history-copy{transform:translateX(-40px); opacity:0}
+      .history-media{transform:translateX(40px); opacity:0}
+      .history.inview .history-copy,
+      .history.inview .history-media{transform:translateX(0); opacity:1}
+      /* parallax suave al acercarse al centro */
+      .history[data-progress] .history-media img{transform:scale(calc(1.06 - (var(--p,0)*0.06))); transition:transform .2s}
+      .history-media img{width:100%; height:auto; display:block}
+    }
+    @media (max-width:980px){
+      .history-grid{grid-template-columns:1fr; gap:18px}
+      /* animación vertical en móvil */
+      .history-copy{transform:translateY(20px); opacity:0}
+      .history-media{transform:translateY(24px); opacity:0}
+      .history.inview .history-copy,
+      .history.inview .history-media{transform:translateY(0); opacity:1}
+      .history-media img{width:100%; height:auto; display:block; transform:scale(calc(1.02 - (var(--p,0)*0.02))); transition:transform .2s}
+    }
+    .history-copy h2{font-size:clamp(28px,3.6vw,46px); margin:0 0 12px 0; color:#fff}
+    .history-copy p{margin:0; color:#fff; font-size:clamp(15px,1.4vw,18px); line-height:1.6}
+
+      @media (min-width: 1024px){
+      .promo-card{ max-width:520px; }
+    }
+    /**/
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 24px; }
+      .grid.cols-3 { grid-template-columns: 1fr; }
+      .grid.cols-2 { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .footer .grid { grid-template-columns: 1fr; }
+      .collage { grid-template-columns: repeat(4, 1fr); }
+    }
+    .promo-btn{ background:#25D366 !important; color:#111 !important; display:inline-flex; align-items:center; gap:.5rem; }
+    .promo-btn svg{ width:18px; height:18px; }
+    /* Hero */
+    .hero { display:grid; grid-template-columns: 1.1fr 0.9fr; align-items:center; gap: 32px; max-width:1200px; height: 200px ;margin: 0 auto; padding: 100px 18px 10px; }
+    .hero .badge { display:inline-flex; gap:8px; align-items:center; background: var(--bg-soft); color: var(--primary-700); padding:8px 12px; border-radius:999px; font-weight:600; }
+    .hero h1 { font-size: clamp(28px, 3.6vw, 48px); line-height:1.08; margin: 14px 0 10px; }
+    .hero p { font-size: clamp(15px, 1.6vw, 18px); color: var(--muted); margin: 8px 0 18px; color: #fff; }
+    .hero .actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; gap:10px; padding: 12px 18px; border-radius: 12px; border:1px solid #dfe9e4; transition:.2s ease; }
+    .btn.primary { background: var(--primary); color:#fff; border-color: transparent; }
+    .btn.primary:hover { background: var(--primary-700); transform: translateY(-1px); }
+    .card {
+      background:#fff; border:1px solid #e6eee9; border-radius: var(--radius); box-shadow: var(--shadow);
+      min-width: 50dvh;
+    }
+    /* Sections */
+    .section { padding: 30px 18px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .grid { display:grid; gap: 20px; }
+    .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    /* Timeline */
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before { content:""; position:absolute; left:6px; top:0; bottom:0; width:2px; background:#dfe9e4; }
+    .milestone { position:relative; padding: 10px 0 10px 14px; }
+    .milestone::before { content:""; position:absolute; left:-2px; top:16px; width:10px; height:10px; background: #fff; border-radius:50%; }
+    /* Collage */
+    .collage { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+    .collage .tile { border-radius: 12px; overflow:hidden; aspect-ratio: 1 / 1; }
+    .collage .tile.span-2 { grid-column: span 2; }
+    .collage .tile.span-3 { grid-column: span 3; }
+    .collage .tile.tall { grid-row: span 2; aspect-ratio: 1 / 1.3; }
+    /* Collage images fill tiles */
+    .collage .tile img { width:100%; height:100%; object-fit:cover; }
+    /* v4.1 header tweaks: burger to right */
+    .nav { display:flex; align-items:center; justify-content: space-between; }
+    .nav .left { display:flex; align-items:center; gap:12px; }
+    .nav .right { display:flex; align-items:center; gap:10px; }
+    .brand .logo-img { width:36px; height:36px; display:block; }
+    /* Stats */
+    .stats { display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .stat { text-align:center; background: #fff; border-radius: 12px; padding: 24px; }
+    .stat .num { font-size: 32px; font-weight: 800; color: var(--primary-700); }
+    /* Simple fade/slide animations */
+    .reveal { opacity: 0; transform: translateY(16px); animation: reveal .7s ease forwards; }
+    .reveal.delay-1 { animation-delay: .15s; }
+    .reveal.delay-2 { animation-delay: .3s; }
+    .hero .media img { width:100%; height:100%; object-fit: cover; }
+    @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+    /*#trayectoria {
+      padding-top: 100px;
+    }*/
+  </style>
+  <script defer="">
+    // Header state (transparent -> solid) and mobile drawer
+    (function(){
+      function qs(id){ return document.getElementById(id); }
+      const onReady = function(){
+        const hdr = document.querySelector('.site-hdr');
+        const hero = document.querySelector('.hero');
+        const backdrop = qs('drawerBackdrop');
+        const drawer = qs('mobileDrawer');
+        const openBtn = qs('menuToggle');
+        const closeBtn = qs('drawerClose');
+
+        // Guard if elements missing
+        if(!hdr){ return; }
+
+        // Transparent -> solid and logo switch
+        const setState = ()=>{
+          const limit = (hero?.offsetHeight || 120) - 20;
+          if (window.scrollY > limit){
+            hdr.classList.add('is-solid'); hdr.classList.remove('over-hero');
+            document.querySelector('.logo-color').style.display='block';
+            document.querySelector('.logo-white').style.display='none';
+          } else {
+            hdr.classList.remove('is-solid'); hdr.classList.add('over-hero');
+            document.querySelector('.logo-color').style.display='none';
+            document.querySelector('.logo-white').style.display='block';
+          }
+        };
+        setState();
+        window.addEventListener('scroll', setState, {passive:true});
+      // Drawer open/close
+        const open = ()=>{
+          if(drawer){ drawer.classList.add('open'); }
+          if(backdrop){ backdrop.classList.add('open'); }
+          document.body.classList.add('nav-open');
+          document.body.style.overflow='hidden';
+        };
+        const close = ()=>{
+          if(drawer){ drawer.classList.remove('open'); }
+          if(backdrop){ backdrop.classList.remove('open'); }
+          document.body.classList.remove('nav-open');
+          document.body.style.overflow='';
+        };
+        if(openBtn){ openBtn.addEventListener('click', open); }
+        if(closeBtn){ closeBtn.addEventListener('click', close); }
+        if(backdrop){ backdrop.addEventListener('click', close); }
+
+        // Fallback: make menu items clickable to close drawer
+        document.addEventListener('click', function(e){
+          if(e.target.closest('.drawer-inner a')){ close(); }
+        });
+      };
+      if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', onReady); } else { onReady(); }
+    })();
+  </script>
+  <link href="assets/css/styles.css" rel="stylesheet"/>
+  <style>
+    /* === BB Promo Modal (rebuild v3) === */
+    .promo-backdrop{position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.6); backdrop-filter:blur(2px); z-index:9999; padding:16px;}
+    .promo-backdrop.show{display:flex; animation:promoFade .25s ease both;}
+    @keyframes promoFade{from{opacity:0} to{opacity:1}}
+    .promo-card{width:100%; max-width:560px; background:#0f0f10; color:#fff; border-radius:16px; overflow:hidden;
+      box-shadow:0 24px 60px rgba(0,0,0,.5); transform:scale(.96); opacity:0; position:relative;}
+    .promo-card.show{animation:promoPop .35s cubic-bezier(.22,.61,.36,1) .05s both;}
+    @keyframes promoPop{to{opacity:1; transform:none}}
+    .promo-card img{display:block; width:100%; height:auto;}
+    .promo-meta{display:flex; gap:12px; align-items:center; justify-content:space-between; padding:12px 14px; font-size:14px;}
+    .promo-meta .left{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .promo-btn{appearance:none; border:0; background:#fff; color:#111; padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:600;}
+    .promo-close{position:absolute; top:10px; right:10px; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,.55);
+      color:#fff; border:1px solid rgba(255,255,255,.25); display:grid; place-items:center; cursor:pointer;}
+    .promo-close:after{content:'✕'; font-size:18px; line-height:1;}
+    @media (max-width:480px){ .promo-card{border-radius:12px} .promo-meta{font-size:13px; padding:10px} .promo-btn{padding:8px 10px} }
+    @media (prefers-reduced-motion: reduce){ .promo-backdrop,.promo-card{animation:none !important; transition:none !important} }
+    @media (min-width: 1024px){
+      .promo-card{ max-width:520px; }
+    }
+
+    .promo-btn{ background:#25D366 !important; color:#111 !important; display:inline-flex; align-items:center; gap:.5rem; }
+    .promo-btn svg{ width:18px; height:18px; }
+  </style>
+  <style>
+    /* === Basic section layout for Promociones (fallback) === */
+    .bb-section{padding: 0;}
+    .bb-section .col{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+    .bb-section img{max-width:100%;height:auto;border-radius:14px;}
+    @media(min-width:900px){.bb-section .txt,.bb-section .pic{flex:1 1 50%;}}
+  </style>
+  <style>
+    /* === Destacados: full-bleed cards with overlay text === */
+    #destacados .card, section[id*="destacad"] .card, .featured .card, .sucursales .card, .productos-destacados .card, .cards.destacados .card {
+      position: relative;
+      border: 0 !important;
+      box-shadow: none !important;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    #destacados .card img, section[id*="destacad"] .card img, .featured .card img, .sucursales .card img, .productos-destacados .card img, .cards.destacados .card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      aspect-ratio: 16/9;
+      transition: transform .6s ease;
+    }
+    #destacados .card:hover img, section[id*="destacad"] .card:hover img, .featured .card:hover img, .sucursales .card:hover img,.productos-destacados .card:hover img, .cards.destacados .card:hover img {
+      transform: scale(1.05);
+    }
+    #destacados .card h3, #destacados .card p,
+    section[id*="destacad"] .card h3, section[id*="destacad"] .card p,
+    .featured .card h3, .featured .card p,
+    .sucursales .card h3, .sucursales .card p,
+    .productos-destacados .card h3, .productos-destacados .card p,
+    .cards.destacados .card h3, .cards.destacados .card p {
+      position: absolute; left: 0; right: 0; margin: 0; color: #fff;
+      padding: 12px 16px; z-index: 2;
+    }
+    #destacados .card h3, section[id*="destacad"] .card h3, .featured .card h3, .sucursales .card h3, .productos-destacados .card h3, .cards.destacados .card h3 {
+      bottom: 34px; font-size: 1.1rem; line-height: 1.25; font-weight: 700; text-shadow: 0 2px 12px rgba(0,0,0,.5);
+    }
+    #destacados .card p, section[id*="destacad"] .card p, .featured .card p, .sucursales .card p, .productos-destacados .card p, .cards.destacados .card p {
+      bottom: 6px; opacity: .95; font-size: .92rem; text-shadow: 0 2px 10px rgba(0,0,0,.5);
+    }
+    #destacados .card::after, section[id*="destacad"] .card::after, .featured .card::after, .productos-destacados .card::after, .cards.destacados .card::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,.35) 40%, rgba(0,0,0,0) 70%);
+      z-index: 1;
+    }
+    /* remove card inner paddings if any */
+    #destacados .card > *:not(img), section[id*="destacad"] .card > *:not(img),
+    .featured .card > *:not(img), .productos-destacados .card > *:not(img), .cards.destacados .card > *:not(img) {
+      padding: 0 !important; background: transparent !important; border: 0 !important;
+    }
+  </style>
+  <style>
+    /* === Promociones centered & responsive (final) === */
+    #promociones .container{max-width:1100px;margin:0 auto;}
+    #promociones .col{flex-direction:column;align-items:center;text-align:center;}
+    #promociones .txt{max-width:760px;}
+    #promociones .pic{width:100%;display:flex;justify-content:center;}
+    #promociones .pic img{width:100%;max-width:520px;height:auto;border-radius:14px;}
+  </style>
+  <style>
+    /* === Promociones pulse animation === */
+    #promociones .pic img{ animation: promoPulse 1.8s ease-in-out infinite; transform-origin: center; }
+    @keyframes promoPulse{
+      0%{ transform: scale(1); filter: none; }
+      50%{ transform: scale(1.03); filter: drop-shadow(0 6px 16px rgba(0,0,0,.2)); }
+      100%{ transform: scale(1); filter: none; }
+    }
+  </style>
+  <style>
+    /* === Promociones: pulse on section & image === */
+    #promociones .pic img{ animation: promoPulse 1.8s ease-in-out infinite; transform-origin: center; }
+    #promociones .container{ animation: promoPulse 2.4s ease-in-out infinite; }
+    @keyframes promoPulse{
+      0%{ transform: scale(1); filter: none; }
+      50%{ transform: scale(1.02); filter: drop-shadow(0 6px 16px rgba(0,0,0,.18)); }
+      100%{ transform: scale(1); filter: none; }
+    }
+  </style>
+  <style>
+    /* === Destacados: overlay CTA === */
+    section[id*="destacad"] .card, #destacados .card { position:relative; overflow:hidden; }
+    section[id*="destacad"] .card a[href*="producto"], section[id*="destacad"] .card a[href*="productos"],
+    #destacados .card a[href*="producto"], #destacados .card a[href*="productos"] {
+      position:absolute; left:50%; bottom:18px; transform:translate(-50%, 8px);
+      z-index:6; opacity:0; transition:opacity .35s ease, transform .35s ease;
+      box-shadow:0 8px 24px rgba(0,0,0,.25);
+    }
+    section[id*="destacad"] .card:hover a[href*="producto"], section[id*="destacad"] .card:hover a[href*="productos"],
+    #destacados .card:hover a[href*="producto"], #destacados .card:hover a[href*="productos"] {
+      opacity:1; transform:translate(-50%, 0);
+    }
+  </style>
+  <style>
+  /* === Visión & Valores: reuse pulse like Promociones === */
+  </style>
+  <style>
+    /* === Reveal on scroll (tipo "Misión") === */
+    .bb-reveal [aix-anim]{opacity:0; transform: translateY(14px) scale(.98); transition: opacity .6s ease, transform .6s ease;}
+    .bb-reveal.in-view [aix-anim]{opacity:1; transform: none;}
+    @media (prefers-reduced-motion: reduce){
+      .bb-reveal [aix-anim]{transition:none; transform:none; opacity:1}
+    }
+
+    /* === Visión & Valores - fix responsivo móvil === */
+    #vision .pic img, #valores .pic img{
+      width:100%;
+      max-width:100%;
+      height:auto;
+      object-fit:contain;
+    }
+    @media (max-width: 600px){
+      #vision .col, #valores .col{flex-direction:column;}
+      #vision .pic, #valores .pic{width:100%;}
+    }
+  </style>
+  <style>
+    /* === Destacados: botón 'Ver productos' por encima al seleccionar === */
+    .card.is-selected .cta { position: relative; z-index: 5; }
+    .card.is-selected { position: relative; }
+    .card.is-selected .cta.sticky-top { position:absolute; top:8px; right:8px; }
+  </style>
+  <style>
+    /* === Cards mobile tap: show CTA overlay above image === */
+    .card { position: relative; overflow: hidden; }
+    .card .media img { position: relative; z-index: 1; }
+    .card .hover-reveal { z-index: 3; }
+    .card.is-selected .hover-reveal { opacity: 1 !important; }
+  </style>
+  <style>
+    /* === Promociones (centrado + responsive) === */
+    .promos .container{max-width:1100px;margin:0 auto;padding:24px;}
+    .promos .col{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;text-align:center;}
+    .promos .txt{max-width:680px;}
+    .promos .pic{flex:1 1 420px;display:flex;justify-content:center;}
+    .promos .pic img{width:100%;max-width:920px;height:auto;border-radius:16px;display:block;}
+    @media (max-width: 640px){
+      .promos .col{flex-direction:column;}
+      .promos .pic{width:100%;}
+      .promos .txt{max-width:100%;}
+    }
+  </style>
+  <style>
+    /* === MVV responsive layout === */
+    .col.mvv{display:flex;flex-direction:column;gap:18px;align-items:center}
+    .col.mvv.reverse{flex-direction:column}
+    .col.mvv .pic{flex:1 1 50%;display:flex;justify-content:center}
+    .col.mvv .txt{flex:1 1 50%}
+    @media (min-width: 900px){
+      .col.mvv{flex-direction:row;align-items:center}
+      .col.mvv.reverse{flex-direction:row-reverse}
+    }
+    .bb-img-responsive{max-width:100%;height:auto;border-radius:16px;display:block}
+    @media (max-width:640px){.bb-img-responsive{border-radius:12px}}
+  </style>
+  <style>
+    /* === Align MVV to 'Nuestra Historia' layout === */
+    .history-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
+    .history-media img{max-width:100%;height:auto;border-radius:16px;display:block}
+    @media(min-width: 900px){
+      .history-grid{grid-template-columns:1fr 1fr}
+    }
+    /* tighten mobile spacing */
+    @media(max-width:640px){
+      .history-media img{border-radius:12px}
+    }
+  </style>
+  <style>
+    /* === MVV size & text centering tweak v2 === */
+    .col.mvv .history-media img{max-width:80%;margin-inline:auto}
+    .col.mvv .history-copy{max-width:56ch;margin-inline:auto}
+    @media(min-width:900px){
+      .col.mvv .history-media img{max-width:88%}
+      .col.mvv .history-copy{max-width:54ch}
+    }
+  </style>
+  <style>
+    /* === Hero text to left override === */
+    .hero, .bb-hero { position: relative; }
+    .hero .copy, .bb-hero .copy, .hero .content, .bb-hero .content{
+      justify-content: flex-start !important;
+      text-align: left !important;
+      align-items: flex-start !important;
+    }
+    /* Por si usaran utilidades de alineación previas */
+    .hero .copy.right, .bb-hero .copy.right{ right: auto !important; left: 5%; }
+    .hero .copy{ left: 5%; max-width: 720px; }
+  </style>
+  <style>
+    /* === MVV sizing v4 (compact like sample) === */
+    .col.mvv .history-media{display:flex;justify-content:center}
+    .col.mvv .history-media img{
+      max-width:33%;
+      height:auto;
+      max-height:300px;
+      object-fit:cover;
+      border-radius:16px;
+    }
+    .col.mvv .history-copy{max-width:52ch;margin-inline:auto}
+    @media (max-width: 768px) {
+      .col.mvv .history-media img{
+        max-width:70%;
+        max-height:220px;
+        border-radius:12px;
+      }
+      .col.mvv .history-copy{max-width:50ch}
+    }
+  </style>
+  <style>
+    /* === MVV sizing (40%) + reveal animation === */
+    .mvv-section .history-media{display:flex;justify-content:center}
+    .mvv-section .history-media img{
+      max-width:40% !important;
+      height:auto !important;
+      max-height:300px !important;
+      object-fit:cover;
+      border-radius:16px;
+      display:block;
+      margin:0 auto;
+    }
+    .mvv-section .history-copy{max-width:56ch;margin-inline:auto}
+    @media (max-width: 768px){
+      .mvv-section .history-media img{
+        max-width:70% !important;
+        max-height:220px !important;
+        border-radius:12px;
+      }
+      .mvv-section .history-copy{max-width:52ch}
+    }
+
+    /* Reveal animation */
+    /*.reveal{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:none}*/
+  </style>
+  <style>
+    /* MVV compact fix (force) */
+    #mision img, #vision img, #valores img{
+      max-width:40% !important;
+      height:auto !important;
+      max-height:300px !important;
+      object-fit:cover;
+      border-radius:16px;
+    }
+    @media(max-width:768px){
+      #mision img, #vision img, #valores img{
+        max-width:70% !important;
+        max-height:220px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div data-include="header"></div>
+  <div aria-hidden="true" class="drawer-backdrop" id="drawerBackdrop"><a href="#trayectoria">Trayectoria</a></div>
+  <div data-include="drawer"></div>
+  <!--<header class="header">
+    <nav class="nav">
+      <div class="left"><div class="brand">
+        <img src="assets/img/logo_mark.webp" class="logo-img" alt="BB Recycling" />
+
+        <span>Battery Boss Recycling</span>
+      </div>
+      <div class="menu"><a href="index.html">Inicio</a><a href="quienes-somos.html">Quiénes somos</a><a href="trayectoria.html">Trayectoria</a>
+        <a href="catalogo.html">Catálogo</a></div>
+      <div class="right">
+      
+    </div>
+
+    <div class="right">
+      <button class="hamburger" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+  <div id="menuOverlay" class="menu-overlay" aria-hidden="true"></div>
+  </header>-->
+  <section class="hero">
+    <div class="copy">
+      <h1 class="reveal delay-1">Trayectoria</h1>
+      <p class="reveal delay-2">Conoce nuestros hitos, crecimiento y compromiso con el servicio y el reciclaje.</p>
+      <div class="actions reveal delay-2">
+        <a class="btn" href="quienes-somos.html">Quiénes somos</a>
+      </div>
+    </div>
+    <!--<div class="media reveal delay-2 card"><img src="assets/img/1033D292-61A3-4896-8AF8-D0C496FC59B2_hero.webp" alt="Productos y servicio" loading="lazy"></div>-->
+  </section> 
+
+  <section id="trayectoria" class="section" style="background:var(--bg-soft)">
+    <div class="container">
+      <h2 class="reveal">Trayectoria</h2>
+      <div class="timeline">
+        <div class="milestone reveal">
+          <h3>2019 – Fundación</h3>
+          <p>Arrancamos en Puebla con foco en servicio y asesoría honesta.</p>
+        </div>
+        <div class="milestone reveal delay-1">
+          <h3>2022 – Expansión</h3>
+          <p>Abrimos puntos en Estado de México con mayor cobertura.</p>
+        </div>
+        <div class="milestone reveal delay-2">
+          <h3>2024 – Monterrey</h3>
+          <p>Sumamos presencia en el norte para entregas más rápidas.</p>
+        </div>
+      </div>
+      <div class="stats" style="margin-top:24px">
+        <div class="stat reveal"><div class="num">+10K</div><div>Clientes atendidos</div></div>
+        <div class="stat reveal delay-1"><div class="num">3</div><div>Ciudades principales</div></div>
+        <div class="stat reveal delay-2"><div class="num">95%</div><div>Satisfacción</div></div>
+        <div class="stat reveal delay-2"><div class="num">100%</div><div>Reciclaje responsable</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria-trayectoria" class="section" style="background:var(--bg-soft)">
+    <div class="container">
+      <h2 class="reveal">Nuestra trayectoria en imágenes</h2>
+      <div class="collage reveal delay-1">
+        <div class="tile span-2"><img src="assets/img/1033D292-61A3-4896-8AF8-D0C496FC59B2_sq.webp" alt="BB Recycling" loading="lazy"></div>
+        <div class="tile span-2"><img src="assets/img/39708325-77F0-4693-B753-013A7D2412EF_sq.webp" alt="BB Recycling" loading="lazy"></div>
+        <div class="tile span-2"><img src="assets/img/84C12DC2-B8AE-45FD-BF24-4043F17B13B9_sq.webp" alt="BB Recycling" loading="lazy"></div>
+        <div class="tile span-2"><img src="assets/img/AB4FFDF6-B93B-477D-8D73-106776138737_sq.webp" alt="BB Recycling" loading="lazy"></div>
+        <div class="tile span-2"><img src="assets/img/BDCF5510-734E-44D0-9614-09E5B24B860D_sq.webp" alt="BB Recycling" loading="lazy"></div>
+        <div class="tile span-2"><img src="assets/img/E4B8621C-4B77-4A81-BFDB-CA67FEDC05CF_sq.webp" alt="BB Recycling" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <div data-include="footer"></div>
+  <script src="assets/js/includes.js?v=99"></script>
+</body>
+</html>

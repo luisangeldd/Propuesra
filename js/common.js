@@ -1,0 +1,1 @@
+(()=>{const t=document.querySelector('.menu-toggle'),n=document.getElementById('nav');if(t&&n){t.addEventListener('click',()=>{const s=!n.classList.contains('show');n.classList.toggle('show',s);t.setAttribute('aria-expanded',s?'true':'false');});}const y=document.getElementById('year');if(y){y.textContent=new Date().getFullYear();}})();
